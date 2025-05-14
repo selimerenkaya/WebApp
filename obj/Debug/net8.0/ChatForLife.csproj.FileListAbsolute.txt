@@ -59,3 +59,41 @@ C:\Users\Selim Eren Kaya\Desktop\web_proje\WebApp\obj\Debug\net8.0\refint\ChatFo
 C:\Users\Selim Eren Kaya\Desktop\web_proje\WebApp\obj\Debug\net8.0\ChatForLife.pdb
 C:\Users\Selim Eren Kaya\Desktop\web_proje\WebApp\obj\Debug\net8.0\ChatForLife.genruntimeconfig.cache
 C:\Users\Selim Eren Kaya\Desktop\web_proje\WebApp\obj\Debug\net8.0\ref\ChatForLife.dll
+C:\Users\Merve\Documents\dene\WebApp\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\Merve\Documents\dene\WebApp\bin\Debug\net8.0\appsettings.json
+C:\Users\Merve\Documents\dene\WebApp\bin\Debug\net8.0\ChatForLife.staticwebassets.runtime.json
+C:\Users\Merve\Documents\dene\WebApp\bin\Debug\net8.0\ChatForLife.exe
+C:\Users\Merve\Documents\dene\WebApp\bin\Debug\net8.0\ChatForLife.deps.json
+C:\Users\Merve\Documents\dene\WebApp\bin\Debug\net8.0\ChatForLife.runtimeconfig.json
+C:\Users\Merve\Documents\dene\WebApp\bin\Debug\net8.0\ChatForLife.dll
+C:\Users\Merve\Documents\dene\WebApp\bin\Debug\net8.0\ChatForLife.pdb
+C:\Users\Merve\Documents\dene\WebApp\obj\Debug\net8.0\ChatForLife.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Merve\Documents\dene\WebApp\obj\Debug\net8.0\ChatForLife.AssemblyInfoInputs.cache
+C:\Users\Merve\Documents\dene\WebApp\obj\Debug\net8.0\ChatForLife.AssemblyInfo.cs
+C:\Users\Merve\Documents\dene\WebApp\obj\Debug\net8.0\ChatForLife.csproj.CoreCompileInputs.cache
+C:\Users\Merve\Documents\dene\WebApp\obj\Debug\net8.0\ChatForLife.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Merve\Documents\dene\WebApp\obj\Debug\net8.0\ChatForLife.RazorAssemblyInfo.cache
+C:\Users\Merve\Documents\dene\WebApp\obj\Debug\net8.0\ChatForLife.RazorAssemblyInfo.cs
+C:\Users\Merve\Documents\dene\WebApp\obj\Debug\net8.0\ChatForLife.sourcelink.json
+C:\Users\Merve\Documents\dene\WebApp\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\Merve\Documents\dene\WebApp\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\Merve\Documents\dene\WebApp\obj\Debug\net8.0\staticwebassets\msbuild.ChatForLife.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Merve\Documents\dene\WebApp\obj\Debug\net8.0\staticwebassets\msbuild.build.ChatForLife.props
+C:\Users\Merve\Documents\dene\WebApp\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.ChatForLife.props
+C:\Users\Merve\Documents\dene\WebApp\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.ChatForLife.props
+C:\Users\Merve\Documents\dene\WebApp\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\Merve\Documents\dene\WebApp\obj\Debug\net8.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\Merve\Documents\dene\WebApp\obj\Debug\net8.0\scopedcss\bundle\ChatForLife.styles.css
+C:\Users\Merve\Documents\dene\WebApp\obj\Debug\net8.0\scopedcss\projectbundle\ChatForLife.bundle.scp.css
+C:\Users\Merve\Documents\dene\WebApp\obj\Debug\net8.0\ChatForLife.dll
+C:\Users\Merve\Documents\dene\WebApp\obj\Debug\net8.0\refint\ChatForLife.dll
+C:\Users\Merve\Documents\dene\WebApp\obj\Debug\net8.0\ChatForLife.pdb
+C:\Users\Merve\Documents\dene\WebApp\obj\Debug\net8.0\ChatForLife.genruntimeconfig.cache
+C:\Users\Merve\Documents\dene\WebApp\obj\Debug\net8.0\ref\ChatForLife.dll
+C:\Users\Merve\Documents\dene\WebApp\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\Merve\Documents\dene\WebApp\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Merve\Documents\dene\WebApp\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Merve\Documents\dene\WebApp\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Merve\Documents\dene\WebApp\obj\Debug\net8.0\ChatForLife.csproj.AssemblyReference.cache
+C:\Users\Merve\Documents\dene\WebApp\obj\Debug\net8.0\ChatForLife.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Merve\Documents\dene\WebApp\obj\Debug\net8.0\ChatForL.8C085A74.Up2Date

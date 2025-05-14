@@ -1,4 +1,5 @@
 ﻿var builder = WebApplication.CreateBuilder(args);
+
 // Razor sayfalarını servise ekler
 builder.Services.AddRazorPages()
     .AddRazorPagesOptions(options =>
@@ -7,17 +8,31 @@ builder.Services.AddRazorPages()
         options.Conventions.AddPageRoute("/Account/Register", "kayit");
     });
 
+// API için gerekli servisler
+builder.Services.AddControllers(); 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();  
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
-    app.UseHsts(); // HTTPS güvenliği için
+    app.UseHsts();
 }
 
-app.UseHttpsRedirection();       // HTTP → HTTPS yönlendirme
-app.UseStaticFiles();            // wwwroot klasöründen statik dosya sunumu
-app.UseRouting();                // Route işlemleri
-app.UseAuthorization();          // Yetkilendirme kontrolü
-app.MapRazorPages();             // Razor Pages'i route'a bağlar
-app.Run();                       // Uygulamayı başlatır
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+app.UseAuthorization();
+
+app.MapRazorPages(); 
+app.MapControllers(); 
+//controller route a ekleme
+
+
+app.UseSwagger();
+app.UseSwaggerUI(); 
+ // http://localhost:5228/swagger ile kontrol edebilir
+
+app.Run(); 
