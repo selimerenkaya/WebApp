@@ -1,0 +1,83 @@
+﻿@page
+@model ChatForLife.Pages.Account.LoginModel
+@{
+    ViewData["Title"] = "Giriş Yap";
+    Layout = "_Layout";
+}
+
+<div class="container mx-auto px-4 py-16 max-w-md">
+    <div class="bg-white bg-opacity-10 p-8 rounded-xl backdrop-blur-sm border border-white border-opacity-20">
+        <h1 class="text-3xl font-bold mb-6 text-center">Giriş Yap</h1>
+
+        <div id="validationSummary" class="text-red-400 mb-4 text-sm"></div>
+
+        <form id="loginForm" method="post" class="space-y-6">
+            @Html.AntiForgeryToken()
+            <div>
+                <label asp-for="Username" class="block text-sm font-medium mb-2">Kullanıcı Adı</label>
+                <input asp-for="Username"
+                       class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-10 border border-white border-opacity-20 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <span asp-validation-for="Username" class="text-red-400 text-xs"></span>
+            </div>
+
+            <div>
+                <label asp-for="Password" class="block text-sm font-medium mb-2">Şifre</label>
+                <input asp-for="Password" type="password"
+                       class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-10 border border-white border-opacity-20 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <span asp-validation-for="Password" class="text-red-400 text-xs"></span>
+            </div>
+
+            <div class="flex items-center">
+                <input asp-for="RememberMe" type="checkbox"
+                       class="h-4 w-4 rounded bg-white bg-opacity-10 border-white focus:ring-blue-500">
+                <label asp-for="RememberMe" class="ml-2 block text-sm">Beni Hatırla</label>
+            </div>
+
+            <button type="submit"
+                    class="w-full btn-primary py-3 px-4 rounded-lg text-lg font-semibold shadow-lg">
+                Giriş Yap
+            </button>
+        </form>
+
+        <div class="mt-6 text-center">
+            <p class="text-sm">
+                Hesabınız yok mu?
+                <a href="/Account/Register" class="text-blue-300 hover:text-blue-200 font-medium">Kayıt Ol</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(document).ready(function () {
+            $('#loginForm').on('submit', function (e) {
+                e.preventDefault();
+
+                if ($(this).valid()) {
+                    $.ajax({
+                        url: $(this).attr('action'),
+                        type: 'POST',
+                        data: $(this).serialize(),
+                        success: function (response) {
+                            if (response.success) {
+                                window.location.href = '/Dashboard/Index';
+                            } else {
+                                // Hataları göster
+                                if (response.errors) {
+                                    $('#validationSummary').html(response.errors.join('<br>'));
+                                } else if (response.error) {
+                                    $('#validationSummary').html(response.error);
+                                }
+                            }
+                        },
+                        error: function (xhr) {
+                            $('#validationSummary').html('Bir hata oluştu. Lütfen tekrar deneyin.');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}
