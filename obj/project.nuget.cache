@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "w2SfzXSnbV0=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Selim Eren Kaya\\Desktop\\web_proje\\WebApp\\ChatForLife.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Selim Eren Kaya\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.20.1\\microsoft.visualstudio.azure.containers.tools.targets.1.20.1.nupkg.sha512"
+  ],
+  "logs": []
+}

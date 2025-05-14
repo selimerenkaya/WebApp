@@ -1,0 +1,75 @@
+﻿@page
+@model ChatForLife.Pages.Dashboard.IndexModel
+@{
+    ViewData["Title"] = "Ana Sayfa";
+    Layout = "_Layout";
+}
+
+<div class="container mx-auto px-4 py-8">
+    <!-- Hoş Geldin Mesajı -->
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold">Hoş Geldin, <span class="text-blue-300">@Model.CurrentUser</span>!</h1>
+        <p class="text-gray-300">Bugün nasılsın?</p>
+    </div>
+
+    <!-- Hızlı Erişim Butonları -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <a asp-page="/Chat/CreateGroup" class="bg-white bg-opacity-10 p-4 rounded-lg flex items-center justify-center flex-col hover:bg-opacity-20 transition">
+            <span class="text-2xl mb-2">➕</span>
+            <span>Grup Oluştur</span>
+        </a>
+        <a asp-page="/Chat/Conversations" class="bg-white bg-opacity-10 p-4 rounded-lg flex items-center justify-center flex-col hover:bg-opacity-20 transition">
+            <span class="text-2xl mb-2">💬</span>
+            <span>Sohbetlerim</span>
+        </a>
+        <a asp-page="/Profile/UserProfile" class="bg-white bg-opacity-10 p-4 rounded-lg flex items-center justify-center flex-col hover:bg-opacity-20 transition">
+            <span class="text-2xl mb-2">👤</span>
+            <span>Profilim</span>
+        </a>
+        <a href="#" class="bg-white bg-opacity-10 p-4 rounded-lg flex items-center justify-center flex-col hover:bg-opacity-20 transition">
+            <span class="text-2xl mb-2">🚪</span>
+            <span>Çıkış Yap</span>
+        </a>
+    </div>
+
+    <!-- Aktif Sohbet Grupları -->
+    <div class="mb-8">
+        <h2 class="text-2xl font-semibold mb-4 flex items-center">
+            <span class="mr-2">🔊</span> Trend Gruplar
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            @foreach (var group in Model.ActiveGroups)
+            {
+                <a asp-page="/Chat/Group" asp-route-id="@group.Id" class="bg-white bg-opacity-5 p-4 rounded-lg border border-white border-opacity-10 hover:bg-opacity-20 transition">
+                    <h3 class="font-semibold text-lg mb-1">@group.Name</h3>
+                    <p class="text-sm text-gray-300 mb-2">@group.Description</p>
+                    <div class="flex items-center text-xs text-gray-400">
+                        <span>👥 @group.MemberCount üye</span>
+                        <span class="ml-auto">💬 @group.LastActivity</span>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+
+    <!-- Tanıdığın Kişiler -->
+    <div class="mb-8">
+        <h2 class="text-2xl font-semibold mb-4 flex items-center">
+            <span class="mr-2">👥</span> Tanıyor Olabileceğin Kişiler
+        </h2>
+
+        <div class="flex overflow-x-auto pb-4 gap-4">
+            @foreach (var user in Model.SuggestedUsers)
+            {
+                <a asp-page="/Chat/Direct" asp-route-userId="@user.Id" class="flex-shrink-0 bg-white bg-opacity-5 p-4 rounded-lg border border-white border-opacity-10 hover:bg-opacity-20 transition text-center">
+                    <div class="w-16 h-16 bg-blue-500 rounded-full mx-auto mb-2 flex items-center justify-center text-2xl">
+                        @user.Initials
+                    </div>
+                    <h3 class="font-medium">@user.Username</h3>
+                    <p class="text-xs text-gray-400">@user.CommonGroups ortak grup</p>
+                </a>
+            }
+        </div>
+    </div>
+</div>

@@ -1,2 +1,3 @@
 # WebApp
-Web Programlama dersine ait proje deposu
+Projenin arayüzünün geliştirildiği kısım
+230201127 - Selim Eren Kaya
