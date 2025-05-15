@@ -9,10 +9,15 @@ namespace ChatForLife.Models
     {
         public AppDbContext CreateDbContext(string[] args)
         {
-            var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .Build();
 
-            // SQL Server bağlantı dizesi - bunu kendi projenize göre değiştirin
-            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=ChatForLifeDb;Trusted_Connection=True;MultipleActiveResultSets=true");
+            var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
+
+            optionsBuilder.UseSqlServer(connectionString);
 
             return new AppDbContext(optionsBuilder.Options);
         }
