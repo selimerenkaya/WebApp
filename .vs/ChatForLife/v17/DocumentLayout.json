@@ -1,9 +1,41 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Selim Eren Kaya\\Desktop\\web_proje\\WebApp\\",
+  "WorkspaceRootPath": "C:\\Users\\eyupe\\Projeler\\WebApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\selim eren kaya\\desktop\\web_proje\\webapp\\pages\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\eyupe\\projeler\\webapp\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\eyupe\\projeler\\webapp\\models\\appdbcontextfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:models\\appdbcontextfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\eyupe\\projeler\\webapp\\models\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:models\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\eyupe\\projeler\\webapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\eyupe\\projeler\\webapp\\docker-cpmpose.yml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:docker-cpmpose.yml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\eyupe\\projeler\\webapp\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\eyupe\\projeler\\webapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\eyupe\\projeler\\webapp\\chatforlife.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:chatforlife.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\eyupe\\projeler\\webapp\\pages\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:pages\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
@@ -14,21 +46,141 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AppDbContextFactory.cs",
+              "DocumentMoniker": "C:\\Users\\eyupe\\Projeler\\WebApp\\Models\\AppDbContextFactory.cs",
+              "RelativeDocumentMoniker": "Models\\AppDbContextFactory.cs",
+              "ToolTip": "C:\\Users\\eyupe\\Projeler\\WebApp\\Models\\AppDbContextFactory.cs",
+              "RelativeToolTip": "Models\\AppDbContextFactory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T12:22:26.933Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\eyupe\\Projeler\\WebApp\\Models\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "Models\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\eyupe\\Projeler\\WebApp\\Models\\AppDbContext.cs",
+              "RelativeToolTip": "Models\\AppDbContext.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAAAFAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T12:20:06.527Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\eyupe\\Projeler\\WebApp\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\eyupe\\Projeler\\WebApp\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Properties\\launchSettings.json",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-15T12:13:46.648Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "C:\\Users\\eyupe\\Projeler\\WebApp\\Dockerfile",
+              "RelativeDocumentMoniker": "Dockerfile",
+              "ToolTip": "C:\\Users\\eyupe\\Projeler\\WebApp\\Dockerfile",
+              "RelativeToolTip": "Dockerfile",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-05-15T09:38:36.586Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ChatForLife",
+              "DocumentMoniker": "C:\\Users\\eyupe\\Projeler\\WebApp\\ChatForLife.csproj",
+              "RelativeDocumentMoniker": "ChatForLife.csproj",
+              "ToolTip": "C:\\Users\\eyupe\\Projeler\\WebApp\\ChatForLife.csproj",
+              "RelativeToolTip": "ChatForLife.csproj",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAAAEwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-05-15T09:40:54.729Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "docker-cpmpose.yml",
+              "DocumentMoniker": "C:\\Users\\eyupe\\Projeler\\WebApp\\docker-cpmpose.yml",
+              "RelativeDocumentMoniker": "docker-cpmpose.yml",
+              "ToolTip": "C:\\Users\\eyupe\\Projeler\\WebApp\\docker-cpmpose.yml",
+              "RelativeToolTip": "docker-cpmpose.yml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
+              "WhenOpened": "2025-05-15T09:41:23.807Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\eyupe\\Projeler\\WebApp\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\eyupe\\Projeler\\WebApp\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T09:38:22.172Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\eyupe\\Projeler\\WebApp\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\eyupe\\Projeler\\WebApp\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-05-15T09:36:27.693Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:3:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "Error.cshtml",
-              "DocumentMoniker": "C:\\Users\\Selim Eren Kaya\\Desktop\\web_proje\\WebApp\\Pages\\Error.cshtml",
+              "DocumentMoniker": "C:\\Users\\eyupe\\Projeler\\WebApp\\Pages\\Error.cshtml",
               "RelativeDocumentMoniker": "Pages\\Error.cshtml",
-              "ToolTip": "C:\\Users\\Selim Eren Kaya\\Desktop\\web_proje\\WebApp\\Pages\\Error.cshtml",
+              "ToolTip": "C:\\Users\\eyupe\\Projeler\\WebApp\\Pages\\Error.cshtml",
               "RelativeToolTip": "Pages\\Error.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAHAAAA",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-05-14T00:34:42.189Z",
               "EditorCaption": ""
