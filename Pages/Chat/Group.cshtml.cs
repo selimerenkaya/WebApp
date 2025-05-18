@@ -1,6 +1,8 @@
-using Microsoft.AspNetCore.Mvc.RazorPages;
+ï»¿using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Collections.Generic;
+using System.Security.Claims;
+
 
 namespace ChatForLife.Pages.Chat
 {
@@ -12,13 +14,15 @@ namespace ChatForLife.Pages.Chat
         public List<GroupMember> Members { get; set; }
         public List<ChatMessage> Messages { get; set; }
 
-        // FIX ME: Varsayılan değer olarak 0 değerini veriyorum ki veritabanından grup verileri çekilene kadar görselliği test edebileyim
+        public bool IsAdmin { get; set; } // bu yeni
+
+        // FIX ME: VarsayÄ±lan deÄŸer olarak 0 deÄŸerini veriyorum ki veritabanÄ±ndan grup verileri Ã§ekilene kadar gÃ¶rselliÄŸi test edebileyim
         // - Selim
         public void OnGet(int groupId = 0)
         {
-            // Örnek veriler tekrardan
-            GroupName = "Yazılım Geliştiriciler";
-            GroupDescription = "Profesyonel yazılım geliştiriciler için sohbet grubu";
+            // Ã–rnek veriler tekrardan
+            GroupName = "YazÄ±lÄ±m GeliÅŸtiriciler";
+            GroupDescription = "Profesyonel yazÄ±lÄ±m geliÅŸtiriciler iÃ§in sohbet grubu";
             MemberCount = 42;
 
             Members = new List<GroupMember>
@@ -34,22 +38,36 @@ namespace ChatForLife.Pages.Chat
                 new ChatMessage {
                     SenderName = "selimeren",
                     SenderAvatar = "https://randomuser.me/api/portraits/men/1.jpg",
-                    Content = "Merhaba arkadaşlar! Bugünkü toplantı saat kaçta?",
+                    Content = "Merhaba arkadaÅŸlar! BugÃ¼nkÃ¼ toplantÄ± saat kaÃ§ta?",
                     Timestamp = DateTime.Now.AddMinutes(-30)
                 },
                 new ChatMessage {
                     SenderName = "ayse_yilmaz",
                     SenderAvatar = "https://randomuser.me/api/portraits/women/1.jpg",
-                    Content = "Toplantı 15:00'te olacak. Herkes hazır mı?",
+                    Content = "ToplantÄ± 15:00'te olacak. Herkes hazÄ±r mÄ±?",
                     Timestamp = DateTime.Now.AddMinutes(-25)
                 },
                 new ChatMessage {
                     SenderName = "mehmet_demir",
                     SenderAvatar = "https://randomuser.me/api/portraits/men/2.jpg",
-                    Content = "Ben hazırım. Yeni proje hakkında konuşacağız değil mi?",
+                    Content = "Ben hazÄ±rÄ±m. Yeni proje hakkÄ±nda konuÅŸacaÄŸÄ±z deÄŸil mi?",
                     Timestamp = DateTime.Now.AddMinutes(-10)
                 }
             };
+
+            // ğŸ”‘ GiriÅŸ yapan kullanÄ±cÄ±yÄ± al
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+            if (groupId == 0)
+            {
+                // geÃ§ici test iÃ§in
+                IsAdmin = true; // Ã¶rnek olarak bu kullanÄ±cÄ± yÃ¶neticidir
+            }
+            else
+            {
+                // TODO: _context.GroupMembers.FirstOrDefault(...) ile IsAdmin alÄ±nabilir
+                IsAdmin = false;
+            }
         }
 
         public class GroupMember
@@ -58,7 +76,7 @@ namespace ChatForLife.Pages.Chat
             public string AvatarUrl { get; set; }
         }
 
-        // FIX ME: Avatar kısmını silebiliriz daha rahat olur belki
+        // FIX ME: Avatar kÄ±smÄ±nÄ± silebiliriz daha rahat olur belki
         // - Selim
         public class ChatMessage
         {
@@ -68,7 +86,7 @@ namespace ChatForLife.Pages.Chat
             public DateTime Timestamp { get; set; }
         }
 
-        // FIX ME: Ajax çağrısı ile mesaj verisi gelince onların kontrolü atanması kaydedilmesi vs.
+        // FIX ME: Ajax Ã§aÄŸrÄ±sÄ± ile mesaj verisi gelince onlarÄ±n kontrolÃ¼ atanmasÄ± kaydedilmesi vs.
         // - Selim
     }
 }

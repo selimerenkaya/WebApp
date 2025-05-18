@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\eyupe\\Projeler\\WebApp\\ChatForLife.csproj": {}
+    "C:\\Users\\mahir\\Source\\Repos\\WebApp\\ChatForLife.csproj": {}
   },
   "projects": {
-    "C:\\Users\\eyupe\\Projeler\\WebApp\\ChatForLife.csproj": {
+    "C:\\Users\\mahir\\Source\\Repos\\WebApp\\ChatForLife.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\eyupe\\Projeler\\WebApp\\ChatForLife.csproj",
+        "projectUniqueName": "C:\\Users\\mahir\\Source\\Repos\\WebApp\\ChatForLife.csproj",
         "projectName": "ChatForLife",
-        "projectPath": "C:\\Users\\eyupe\\Projeler\\WebApp\\ChatForLife.csproj",
-        "packagesPath": "C:\\Users\\eyupe\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\eyupe\\Projeler\\WebApp\\obj\\",
+        "projectPath": "C:\\Users\\mahir\\Source\\Repos\\WebApp\\ChatForLife.csproj",
+        "packagesPath": "C:\\Users\\mahir\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mahir\\Source\\Repos\\WebApp\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\eyupe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mahir\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -46,6 +50,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "JWT": {
+              "target": "Package",
+              "version": "[11.0.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.4, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.0, )"

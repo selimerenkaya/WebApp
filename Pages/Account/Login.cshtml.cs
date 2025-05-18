@@ -1,70 +1,70 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.ComponentModel.DataAnnotations;
+using Microsoft.Extensions.Options;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using ChatForLife.Settings; // JwtSettings sýnýfý buradaysa
 
 namespace ChatForLife.Pages.Account
 {
     public class LoginModel : PageModel
     {
+        private readonly JwtSettings _jwtSettings;
+
+        public LoginModel(IOptions<JwtSettings> jwtSettings)
+        {
+            _jwtSettings = jwtSettings.Value;
+        }
+
         [BindProperty]
-        [Required(ErrorMessage = "Kullanýcý adý zorunludur")]
         public string Username { get; set; }
 
         [BindProperty]
-        [Required(ErrorMessage = "Þifre zorunludur")]
-        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [BindProperty]
         public bool RememberMe { get; set; }
 
-        public void OnGet()
-        {
-        }
-
         public IActionResult OnPost()
         {
-            if (!ModelState.IsValid)
+            if (Username == "admin" && Password == "1234")
             {
-                if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+                var claims = new[]
                 {
-                    // AJAX isteði için JSON dön
-                    var errors = ModelState.Values
-                        .SelectMany(v => v.Errors)
-                        .Select(e => e.ErrorMessage)
-                        .ToList();
+            new Claim(ClaimTypes.Name, Username),
+            new Claim(ClaimTypes.NameIdentifier, "1"),
+            new Claim(ClaimTypes.Role, "User")
+        };
 
-                    return new JsonResult(new { success = false, errors });
-                }
+                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key));
+                var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-                return Page();
-            }
+                var token = new JwtSecurityToken(
+                    issuer: _jwtSettings.Issuer,
+                    audience: _jwtSettings.Audience,
+                    claims: claims,
+                    expires: DateTime.UtcNow.AddMinutes(_jwtSettings.ExpiresInMinutes),
+                    signingCredentials: creds
+                );
 
-            // FIX ME: Gerçek kimlik doðrulama mantýðýný buraya eklenecek
-            // Örnek kontrol olarak gerçekleþtirmek için bunu yazdým
-            // veritabaný baðlantýsý kurulunca onunla saðlanacak
-            if (Username != "demo" || Password != "demo123")
-            {
-                if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+                var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+
+                // TOKEN'I COOKIE'YE YAZ
+                Response.Cookies.Append("access_token", tokenString, new CookieOptions
                 {
-                    return new JsonResult(new
-                    {
-                        success = false,
-                        error = "Kullanýcý adý veya þifre hatalý"
-                    });
-                }
+                    HttpOnly = true,
+                    Secure = true,
+                    SameSite = SameSiteMode.Strict,
+                    Expires = DateTime.UtcNow.AddMinutes(_jwtSettings.ExpiresInMinutes)
+                });
 
-                ModelState.AddModelError(string.Empty, "Kullanýcý adý veya þifre hatalý");
-                return Page();
-            }
-
-            // Baþarýlý giriþ
-            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
-            {
+                // AJAX için success: true dön
                 return new JsonResult(new { success = true });
             }
 
-            return RedirectToPage("/Dashboard/Index");
+            return new JsonResult(new { success = false, error = "Kullanýcý adý veya þifre hatalý." });
         }
     }
 }

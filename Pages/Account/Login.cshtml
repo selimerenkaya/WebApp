@@ -62,14 +62,10 @@
                         data: $(this).serialize(),
                         success: function (response) {
                             if (response.success) {
-                                window.location.href = '/Dashboard/Index';
+                                
+                                window.location.href = "/Dashboard";
                             } else {
-                                // Hataları göster
-                                if (response.errors) {
-                                    $('#validationSummary').html(response.errors.join('<br>'));
-                                } else if (response.error) {
-                                    $('#validationSummary').html(response.error);
-                                }
+                                $('#validationSummary').html(response.error || "Giriş başarısız");
                             }
                         },
                         error: function (xhr) {
