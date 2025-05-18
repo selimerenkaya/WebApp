@@ -4,6 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
+using ChatForLife.Repositories;
 
 namespace ChatForLife.Pages.Dashboard
 {
@@ -14,33 +15,47 @@ namespace ChatForLife.Pages.Dashboard
 
         public List<GroupInfo> ActiveGroups { get; set; } = new();
         public List<UserInfo> SuggestedUsers { get; set; } = new();
+        private readonly IGroupRepository _groupRepository;
+        private readonly IUserRepository _userRepository;
 
-        public void OnGet()
+        public IndexModel(IGroupRepository groupRepository, IUserRepository userRepository)
         {
-            // Token'dan kullanýcý adýný çek
-            
-            if (User.Identity.IsAuthenticated)
-            {
-                CurrentUser = User.Identity.Name;
-            }
-
-            // Fake data (devam edebilir)
-            ActiveGroups = new List<GroupInfo>
-            {
-                new() { Id = 1, Name = "Yazýlým Geliþtiriciler", Description = "Yazýlým dünyasý hakkýnda sohbet", MemberCount = 42, LastActivity = "2 saat önce" },
-                new() { Id = 2, Name = "Oyun Severler", Description = "Oyun tavsiyeleri ve sohbet", MemberCount = 28, LastActivity = "30 dakika önce" },
-                new() { Id = 3, Name = "Müzik Tutkunlarý", Description = "Müzik paylaþýmlarý", MemberCount = 15, LastActivity = "1 gün önce" }
-            };
-
-            SuggestedUsers = new List<UserInfo>
-            {
-                new() { Id = 1, Username = "ahmetkaya", Initials = "AK", CommonGroups = 2 },
-                new() { Id = 2, Username = "mehmetdemir", Initials = "MD", CommonGroups = 1 },
-                new() { Id = 3, Username = "ayse_yilmaz", Initials = "AY", CommonGroups = 3 },
-                new() { Id = 4, Username = "fatih_can", Initials = "FC", CommonGroups = 1 },
-                new() { Id = 5, Username = "zeynep_", Initials = "Z", CommonGroups = 2 }
-            };
+            _groupRepository = groupRepository;
+            _userRepository = userRepository;
         }
+        public async Task OnGetAsync()
+        {
+            var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier).Value);
+
+            // Giriþ yapan kullanýcý adý
+            var user = await _userRepository.GetByIdAsync(userId);
+            CurrentUser = user?.Username ?? "Kullanýcý";
+
+            // Kullanýcýnýn aktif olduðu gruplar
+            var userGroups = await _groupRepository.GetUserGroupsAsync(userId);
+            ActiveGroups = userGroups.Select(g => new GroupInfo
+            {
+                Id = g.Id,
+                Name = g.Name,
+                Description = g.Description,
+                MemberCount = g.Members.Count,
+                //LastActivity = g.LastActivity?.ToString("g") ?? "Bilinmiyor"
+            }).ToList();
+
+            // Önerilen kullanýcýlar: ayný grupta olmayan ama sisteme kayýtlý diðer kullanýcýlar (örnek öneri)
+            var allUsers = await _userRepository.GetAllAsync();
+            SuggestedUsers = allUsers
+                .Where(u => u.Id != userId && !userGroups.SelectMany(g => g.Members).Any(m => m.UserId == u.Id))
+                .Take(5)
+                .Select(u => new UserInfo
+                {
+                    Id = u.Id,
+                    Username = u.Username,
+                    Initials = string.Concat(u.Username.Take(2)).ToUpper(),
+                    CommonGroups = 0
+                }).ToList();
+        }
+
 
         public class GroupInfo
         {
@@ -48,7 +63,7 @@ namespace ChatForLife.Pages.Dashboard
             public string Name { get; set; }
             public string Description { get; set; }
             public int MemberCount { get; set; }
-            public string LastActivity { get; set; }
+            
         }
 
         public class UserInfo

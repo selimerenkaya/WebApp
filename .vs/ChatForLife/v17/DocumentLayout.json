@@ -3,57 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\mahir\\source\\repos\\WebApp\\",
   "Documents": [
     {
-<<<<<<< HEAD
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\gitignore.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:gitignore.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\pages\\chat\\group.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:pages\\chat\\group.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\pages\\chat\\group.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:pages\\chat\\group.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\pages\\account\\login.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:pages\\account\\login.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\models\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:models\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\models\\entities\\message.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:models\\entities\\message.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\models\\entities\\groupmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:models\\entities\\groupmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\models\\entities\\groupmember.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:models\\entities\\groupmember.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\models\\entities\\group.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:models\\entities\\group.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\models\\entities\\activity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:models\\entities\\activity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\pages\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:pages\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\pages\\account\\login.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:pages\\account\\login.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\pages\\dashboard\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -64,95 +19,64 @@
       "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:pages\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\pages\\chat\\group.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:pages\\chat\\group.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\chatforlife.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:chatforlife.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\pages\\chat\\group.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:pages\\chat\\group.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\settings\\jwtsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:settings\\jwtsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\repositories\\igrouprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:repositories\\igrouprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\repositories\\grouprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:repositories\\grouprepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\pages\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:pages\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\pages\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:pages\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\repositories\\igroupmessagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:repositories\\igroupmessagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\repositories\\imessagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:repositories\\imessagerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\repositories\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:repositories\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\repositories\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:repositories\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\.dockerignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:.dockerignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\pages\\chat\\direct.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:pages\\chat\\direct.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\pages\\chat\\creategroup.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:pages\\chat\\creategroup.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\pages\\chat\\conversations.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:pages\\chat\\conversations.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\pages\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-=======
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\eyupe\\projeler\\webapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\eyupe\\projeler\\webapp\\docker-compose.yml||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:docker-compose.yml||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\eyupe\\projeler\\webapp\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\eyupe\\projeler\\webapp\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\eyupe\\projeler\\webapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\eyupe\\projeler\\webapp\\chatforlife.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
-      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:chatforlife.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\docker-compose.yml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:docker-compose.yml||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\eyupe\\projeler\\webapp\\chatforlife.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:chatforlife.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\eyupe\\projeler\\webapp\\models\\appdbcontextfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:models\\appdbcontextfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\eyupe\\projeler\\webapp\\models\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:models\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\eyupe\\projeler\\webapp\\pages\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
->>>>>>> 7b6921003b9b27110625584ed3f299d307b50725
+      "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\pages\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:pages\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\eyupe\\Projeler\\WebApp\\gitignore.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:gitignore.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -162,42 +86,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-<<<<<<< HEAD
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 19,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "gitignore.gitignore",
-              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\gitignore.gitignore",
-              "RelativeDocumentMoniker": "gitignore.gitignore",
-              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\gitignore.gitignore",
-              "RelativeToolTip": "gitignore.gitignore",
-              "ViewState": "AgIAABEAAAAAAAAAAAAAAH0AAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-05-18T16:59:29.474Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Group.cshtml",
-              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Chat\\Group.cshtml",
-              "RelativeDocumentMoniker": "Pages\\Chat\\Group.cshtml",
-              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Chat\\Group.cshtml",
-              "RelativeToolTip": "Pages\\Chat\\Group.cshtml",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-18T16:26:08.837Z",
-              "EditorCaption": ""
-=======
-          "SelectedChildIndex": 5,
-          "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
->>>>>>> 7b6921003b9b27110625584ed3f299d307b50725
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:3:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
@@ -228,173 +118,169 @@
             },
             {
               "$type": "Document",
-<<<<<<< HEAD
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Models\\Entities\\User.cs",
               "RelativeDocumentMoniker": "Models\\Entities\\User.cs",
               "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Models\\Entities\\User.cs",
               "RelativeToolTip": "Models\\Entities\\User.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAowDAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-18T16:19:00.102Z",
-=======
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\eyupe\\Projeler\\WebApp\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\eyupe\\Projeler\\WebApp\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAmwCYAAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-15T09:38:22.172Z",
->>>>>>> 7b6921003b9b27110625584ed3f299d307b50725
+              "WhenOpened": "2025-05-18T18:52:51.295Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-<<<<<<< HEAD
-              "DocumentIndex": 6,
-              "Title": "Message.cs",
-              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Models\\Entities\\Message.cs",
-              "RelativeDocumentMoniker": "Models\\Entities\\Message.cs",
-              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Models\\Entities\\Message.cs",
-              "RelativeToolTip": "Models\\Entities\\Message.cs",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Dashboard\\Index.cshtml",
+              "RelativeDocumentMoniker": "Pages\\Dashboard\\Index.cshtml",
+              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Dashboard\\Index.cshtml",
+              "RelativeToolTip": "Pages\\Dashboard\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-18T16:18:53.345Z",
-              "EditorCaption": ""
-=======
-              "DocumentIndex": 10,
-              "Title": "gitignore.gitignore",
-              "DocumentMoniker": "C:\\Users\\eyupe\\Projeler\\WebApp\\gitignore.gitignore",
-              "RelativeDocumentMoniker": "gitignore.gitignore",
-              "ToolTip": "C:\\Users\\eyupe\\Projeler\\WebApp\\gitignore.gitignore",
-              "RelativeToolTip": "gitignore.gitignore",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-05-17T13:46:13.349Z"
->>>>>>> 7b6921003b9b27110625584ed3f299d307b50725
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-<<<<<<< HEAD
-              "Title": "GroupMessage.cs",
-              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Models\\Entities\\GroupMessage.cs",
-              "RelativeDocumentMoniker": "Models\\Entities\\GroupMessage.cs",
-              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Models\\Entities\\GroupMessage.cs",
-              "RelativeToolTip": "Models\\Entities\\GroupMessage.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-18T16:18:50.956Z",
-              "EditorCaption": ""
-=======
-              "Title": "AppDbContextFactory.cs",
-              "DocumentMoniker": "C:\\Users\\eyupe\\Projeler\\WebApp\\Models\\AppDbContextFactory.cs",
-              "RelativeDocumentMoniker": "Models\\AppDbContextFactory.cs",
-              "ToolTip": "C:\\Users\\eyupe\\Projeler\\WebApp\\Models\\AppDbContextFactory.cs",
-              "RelativeToolTip": "Models\\AppDbContextFactory.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-15T12:22:26.933Z"
->>>>>>> 7b6921003b9b27110625584ed3f299d307b50725
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-<<<<<<< HEAD
-              "Title": "GroupMember.cs",
-              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Models\\Entities\\GroupMember.cs",
-              "RelativeDocumentMoniker": "Models\\Entities\\GroupMember.cs",
-              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Models\\Entities\\GroupMember.cs",
-              "RelativeToolTip": "Models\\Entities\\GroupMember.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-18T16:18:44.017Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Group.cs",
-              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Models\\Entities\\Group.cs",
-              "RelativeDocumentMoniker": "Models\\Entities\\Group.cs",
-              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Models\\Entities\\Group.cs",
-              "RelativeToolTip": "Models\\Entities\\Group.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-18T16:18:42.258Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Activity.cs",
-              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Models\\Entities\\Activity.cs",
-              "RelativeDocumentMoniker": "Models\\Entities\\Activity.cs",
-              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Models\\Entities\\Activity.cs",
-              "RelativeToolTip": "Models\\Entities\\Activity.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-18T16:18:39.029Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "ChatForLife",
-              "DocumentMoniker": "C:\\Users\\mahir\\Source\\Repos\\WebApp\\ChatForLife.csproj",
-              "RelativeDocumentMoniker": "ChatForLife.csproj",
-              "ToolTip": "C:\\Users\\mahir\\Source\\Repos\\WebApp\\ChatForLife.csproj",
-              "RelativeToolTip": "ChatForLife.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-05-18T16:02:15.339Z",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-18T18:44:42.222Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Register.cshtml.cs",
-              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Account\\Register.cshtml.cs",
-              "RelativeDocumentMoniker": "Pages\\Account\\Register.cshtml.cs",
-              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Account\\Register.cshtml.cs",
-              "RelativeToolTip": "Pages\\Account\\Register.cshtml.cs",
-              "ViewState": "AgIAAD4AAAAAAAAAAAA0wFUAAAANAAAAAAAAAA==",
+              "Title": "Group.cshtml",
+              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Chat\\Group.cshtml",
+              "RelativeDocumentMoniker": "Pages\\Chat\\Group.cshtml",
+              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Chat\\Group.cshtml",
+              "RelativeToolTip": "Pages\\Chat\\Group.cshtml",
+              "ViewState": "AgIAAHsAAAAAAAAAAAAowEUAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-18T18:41:56.618Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "IGroupMessageRepository.cs",
+              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Repositories\\IGroupMessageRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\IGroupMessageRepository.cs",
+              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Repositories\\IGroupMessageRepository.cs",
+              "RelativeToolTip": "Repositories\\IGroupMessageRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-18T15:32:50.943Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-18T18:21:57.832Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "Register.cshtml",
-              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Account\\Register.cshtml",
-              "RelativeDocumentMoniker": "Pages\\Account\\Register.cshtml",
-              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Account\\Register.cshtml",
-              "RelativeToolTip": "Pages\\Account\\Register.cshtml",
+              "DocumentIndex": 10,
+              "Title": "IMessageRepository.cs",
+              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Repositories\\IMessageRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\IMessageRepository.cs",
+              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Repositories\\IMessageRepository.cs",
+              "RelativeToolTip": "Repositories\\IMessageRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-18T15:32:48.002Z",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T18:21:51.407Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IGroupRepository.cs",
+              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Repositories\\IGroupRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\IGroupRepository.cs",
+              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Repositories\\IGroupRepository.cs",
+              "RelativeToolTip": "Repositories\\IGroupRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T18:16:43.137Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "IRepository.cs",
+              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Repositories\\IRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\IRepository.cs",
+              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Repositories\\IRepository.cs",
+              "RelativeToolTip": "Repositories\\IRepository.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T18:14:10.609Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Repositories\\UserRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\UserRepository.cs",
+              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Repositories\\UserRepository.cs",
+              "RelativeToolTip": "Repositories\\UserRepository.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T18:14:01.872Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Repository.cs",
+              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Repositories\\Repository.cs",
+              "RelativeDocumentMoniker": "Repositories\\Repository.cs",
+              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Repositories\\Repository.cs",
+              "RelativeToolTip": "Repositories\\Repository.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T18:11:07.736Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "GroupRepository.cs",
+              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Repositories\\GroupRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\GroupRepository.cs",
+              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Repositories\\GroupRepository.cs",
+              "RelativeToolTip": "Repositories\\GroupRepository.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAA1wAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T18:10:54.249Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Group.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Chat\\Group.cshtml.cs",
+              "RelativeDocumentMoniker": "Pages\\Chat\\Group.cshtml.cs",
+              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Chat\\Group.cshtml.cs",
+              "RelativeToolTip": "Pages\\Chat\\Group.cshtml.cs",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAiwDIAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T18:08:18.008Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "Privacy.cshtml",
-              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Privacy.cshtml",
-              "RelativeDocumentMoniker": "Pages\\Privacy.cshtml",
-              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Privacy.cshtml",
-              "RelativeToolTip": "Pages\\Privacy.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-17T22:15:19.131Z",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Dashboard\\Index.cshtml.cs",
+              "RelativeDocumentMoniker": "Pages\\Dashboard\\Index.cshtml.cs",
+              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Dashboard\\Index.cshtml.cs",
+              "RelativeToolTip": "Pages\\Dashboard\\Index.cshtml.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAA1wEEAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T18:08:08.377Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 0,
+              "Title": "Login.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Account\\Login.cshtml.cs",
+              "RelativeDocumentMoniker": "Pages\\Account\\Login.cshtml.cs",
+              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Account\\Login.cshtml.cs",
+              "RelativeToolTip": "Pages\\Account\\Login.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T18:07:48.784Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": ".dockerignore",
               "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\.dockerignore",
               "RelativeDocumentMoniker": ".dockerignore",
@@ -402,263 +288,59 @@
               "RelativeToolTip": ".dockerignore",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-05-17T22:15:03.226Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Index.cshtml.cs",
-              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Dashboard\\Index.cshtml.cs",
-              "RelativeDocumentMoniker": "Pages\\Dashboard\\Index.cshtml.cs",
-              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Dashboard\\Index.cshtml.cs",
-              "RelativeToolTip": "Pages\\Dashboard\\Index.cshtml.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAkwBQAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-17T22:09:34.206Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Dashboard\\Index.cshtml",
-              "RelativeDocumentMoniker": "Pages\\Dashboard\\Index.cshtml",
-              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Dashboard\\Index.cshtml",
-              "RelativeToolTip": "Pages\\Dashboard\\Index.cshtml",
-              "ViewState": "AgIAAEoAAAAAAAAAAAAAAEoAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-17T22:09:06.479Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Index.cshtml",
-              "RelativeDocumentMoniker": "Pages\\Index.cshtml",
-              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Index.cshtml",
-              "RelativeToolTip": "Pages\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-17T22:08:56.757Z",
-=======
-              "Title": "AppDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\eyupe\\Projeler\\WebApp\\Models\\AppDbContext.cs",
-              "RelativeDocumentMoniker": "Models\\AppDbContext.cs",
-              "ToolTip": "C:\\Users\\eyupe\\Projeler\\WebApp\\Models\\AppDbContext.cs",
-              "RelativeToolTip": "Models\\AppDbContext.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAAAFAAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-15T12:20:06.527Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "launchSettings.json",
-              "DocumentMoniker": "C:\\Users\\eyupe\\Projeler\\WebApp\\Properties\\launchSettings.json",
-              "RelativeDocumentMoniker": "Properties\\launchSettings.json",
-              "ToolTip": "C:\\Users\\eyupe\\Projeler\\WebApp\\Properties\\launchSettings.json",
-              "RelativeToolTip": "Properties\\launchSettings.json",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAACQAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-15T12:13:46.648Z",
->>>>>>> 7b6921003b9b27110625584ed3f299d307b50725
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-<<<<<<< HEAD
-              "Title": "Group.cshtml.cs",
-              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Chat\\Group.cshtml.cs",
-              "RelativeDocumentMoniker": "Pages\\Chat\\Group.cshtml.cs",
-              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Chat\\Group.cshtml.cs",
-              "RelativeToolTip": "Pages\\Chat\\Group.cshtml.cs",
-              "ViewState": "AgIAAEYAAAAAAAAAAAAwwAQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-17T22:07:17.952Z",
-=======
-              "Title": "Dockerfile",
-              "DocumentMoniker": "C:\\Users\\eyupe\\Projeler\\WebApp\\Dockerfile",
-              "RelativeDocumentMoniker": "Dockerfile",
-              "ToolTip": "C:\\Users\\eyupe\\Projeler\\WebApp\\Dockerfile",
-              "RelativeToolTip": "Dockerfile",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-05-15T09:38:36.586Z",
->>>>>>> 7b6921003b9b27110625584ed3f299d307b50725
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-<<<<<<< HEAD
-              "DocumentIndex": 23,
-              "Title": "Direct.cshtml.cs",
-              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Chat\\Direct.cshtml.cs",
-              "RelativeDocumentMoniker": "Pages\\Chat\\Direct.cshtml.cs",
-              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Chat\\Direct.cshtml.cs",
-              "RelativeToolTip": "Pages\\Chat\\Direct.cshtml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-17T22:07:14.031Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "CreateGroup.cshtml.cs",
-              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Chat\\CreateGroup.cshtml.cs",
-              "RelativeDocumentMoniker": "Pages\\Chat\\CreateGroup.cshtml.cs",
-              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Chat\\CreateGroup.cshtml.cs",
-              "RelativeToolTip": "Pages\\Chat\\CreateGroup.cshtml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-17T22:07:04.81Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "Conversations.cshtml.cs",
-              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Chat\\Conversations.cshtml.cs",
-              "RelativeDocumentMoniker": "Pages\\Chat\\Conversations.cshtml.cs",
-              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Chat\\Conversations.cshtml.cs",
-              "RelativeToolTip": "Pages\\Chat\\Conversations.cshtml.cs",
-              "ViewState": "AgIAADwAAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-17T22:06:52.431Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Login.cshtml.cs",
-              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Account\\Login.cshtml.cs",
-              "RelativeDocumentMoniker": "Pages\\Account\\Login.cshtml.cs",
-              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Account\\Login.cshtml.cs",
-              "RelativeToolTip": "Pages\\Account\\Login.cshtml.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAqwEMAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-17T21:46:38.125Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Login.cshtml",
-              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Account\\Login.cshtml",
-              "RelativeDocumentMoniker": "Pages\\Account\\Login.cshtml",
-              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Account\\Login.cshtml",
-              "RelativeToolTip": "Pages\\Account\\Login.cshtml",
-              "ViewState": "AgIAADIAAAAAAAAAAAAqwEAAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-17T21:41:49.249Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-18T18:07:37.647Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 15,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
-              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "Controllers\\AuthController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-17T21:45:44.576Z",
-              "EditorCaption": ""
+              "Title": "Dockerfile",
+              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Dockerfile",
+              "RelativeDocumentMoniker": "Dockerfile",
+              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Dockerfile",
+              "RelativeToolTip": "Dockerfile",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-05-18T18:07:31.21Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 17,
-              "Title": "JwtSettings.cs",
-              "DocumentMoniker": "C:\\Users\\mahir\\Source\\Repos\\WebApp\\Settings\\JwtSettings.cs",
-              "RelativeDocumentMoniker": "Settings\\JwtSettings.cs",
-              "ToolTip": "C:\\Users\\mahir\\Source\\Repos\\WebApp\\Settings\\JwtSettings.cs",
-              "RelativeToolTip": "Settings\\JwtSettings.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-17T21:40:59.724Z",
-=======
-              "DocumentIndex": 6,
-              "Title": "ChatForLife.csproj",
-              "DocumentMoniker": "C:\\Users\\eyupe\\Projeler\\WebApp\\ChatForLife.csproj",
-              "RelativeDocumentMoniker": "ChatForLife.csproj",
-              "ToolTip": "C:\\Users\\eyupe\\Projeler\\WebApp\\ChatForLife.csproj",
-              "RelativeToolTip": "ChatForLife.csproj",
-              "ViewState": "AgIAACoAAAAAAAAAAAAAADkAAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-05-15T09:40:54.729Z",
->>>>>>> 7b6921003b9b27110625584ed3f299d307b50725
-              "EditorCaption": ""
+              "Title": "docker-compose.yml",
+              "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\docker-compose.yml",
+              "RelativeDocumentMoniker": "docker-compose.yml",
+              "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\docker-compose.yml",
+              "RelativeToolTip": "docker-compose.yml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
+              "WhenOpened": "2025-05-18T18:07:16.88Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-<<<<<<< HEAD
+              "DocumentIndex": 8,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAqwC0AAAAHAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABYAAABOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-17T21:30:52.746Z",
-=======
-              "Title": "docker-compose.yml",
-              "DocumentMoniker": "C:\\Users\\eyupe\\Projeler\\WebApp\\docker-compose.yml",
-              "RelativeDocumentMoniker": "docker-compose.yml",
-              "ToolTip": "C:\\Users\\eyupe\\Projeler\\WebApp\\docker-compose.yml",
-              "RelativeToolTip": "docker-compose.yml",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAiwBoAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
-              "WhenOpened": "2025-05-15T09:41:23.807Z",
->>>>>>> 7b6921003b9b27110625584ed3f299d307b50725
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-17T21:30:52.746Z"
             },
             {
               "$type": "Document",
-<<<<<<< HEAD
-              "DocumentIndex": 18,
+              "DocumentIndex": 16,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
               "ToolTip": "C:\\Users\\mahir\\source\\repos\\WebApp\\appsettings.json",
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAwAAAAAAAAAA==",
-=======
-              "DocumentIndex": 5,
-              "Title": "ChatForLife",
-              "DocumentMoniker": "C:\\Users\\eyupe\\Projeler\\WebApp\\ChatForLife.csproj",
-              "RelativeDocumentMoniker": "ChatForLife.csproj",
-              "ToolTip": "C:\\Users\\eyupe\\Projeler\\WebApp\\ChatForLife.csproj",
-              "RelativeToolTip": "ChatForLife.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-05-17T14:52:12.668Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\eyupe\\Projeler\\WebApp\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "C:\\Users\\eyupe\\Projeler\\WebApp\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
->>>>>>> 7b6921003b9b27110625584ed3f299d307b50725
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-15T09:36:27.693Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-15T09:36:27.693Z"
             },
             {
               "$type": "Document",
-<<<<<<< HEAD
-              "DocumentIndex": 26,
-=======
-              "DocumentIndex": 9,
->>>>>>> 7b6921003b9b27110625584ed3f299d307b50725
+              "DocumentIndex": 18,
               "Title": "Error.cshtml",
               "DocumentMoniker": "C:\\Users\\mahir\\source\\repos\\WebApp\\Pages\\Error.cshtml",
               "RelativeDocumentMoniker": "Pages\\Error.cshtml",
@@ -667,16 +349,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-05-14T00:34:42.189Z"
-            }
-          ]
-        },
-        {
-          "DockedWidth": 1357,
-          "SelectedChildIndex": -1,
-          "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:4:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             }
           ]
         }

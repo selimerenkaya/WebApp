@@ -2,82 +2,75 @@
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
-
+using System.Threading.Tasks;
+using System.Linq;
+using ChatForLife.Repositories;
+using ChatForLife.Models;
 
 namespace ChatForLife.Pages.Chat
 {
     public class GroupModel : PageModel
     {
+        private readonly IGroupRepository _groupRepository;
+        private readonly IGroupMessageRepository _groupMessageRepository;
+
+        public GroupModel(IGroupRepository groupRepo, IGroupMessageRepository messageRepo)
+        {
+            _groupRepository = groupRepo;
+            _groupMessageRepository = messageRepo;
+        }
+
         public string GroupName { get; set; }
         public string GroupDescription { get; set; }
         public int MemberCount { get; set; }
-        public List<GroupMember> Members { get; set; }
-        public List<ChatMessage> Messages { get; set; }
+        public List<GroupMemberInfo> Members { get; set; } = new();
+        public List<ChatMessage> Messages { get; set; } = new();
 
-        public bool IsAdmin { get; set; } // bu yeni
+        public bool IsAdmin { get; set; }
 
-        // FIX ME: Varsayılan değer olarak 0 değerini veriyorum ki veritabanından grup verileri çekilene kadar görselliği test edebileyim
-        // - Selim
-        public void OnGet(int groupId = 0)
+        public async Task OnGetAsync(int groupId)
         {
-            // Örnek veriler tekrardan
-            GroupName = "Yazılım Geliştiriciler";
-            GroupDescription = "Profesyonel yazılım geliştiriciler için sohbet grubu";
-            MemberCount = 42;
-
-            Members = new List<GroupMember>
-            {
-                new GroupMember { Username = "selimeren", AvatarUrl = "https://randomuser.me/api/portraits/men/1.jpg" },
-                new GroupMember { Username = "ayse_yilmaz", AvatarUrl = "https://randomuser.me/api/portraits/women/1.jpg" },
-                new GroupMember { Username = "mehmet_demir", AvatarUrl = "https://randomuser.me/api/portraits/men/2.jpg" },
-                new GroupMember { Username = "fatih_can", AvatarUrl = "https://randomuser.me/api/portraits/men/3.jpg" }
-            };
-
-            Messages = new List<ChatMessage>
-            {
-                new ChatMessage {
-                    SenderName = "selimeren",
-                    SenderAvatar = "https://randomuser.me/api/portraits/men/1.jpg",
-                    Content = "Merhaba arkadaşlar! Bugünkü toplantı saat kaçta?",
-                    Timestamp = DateTime.Now.AddMinutes(-30)
-                },
-                new ChatMessage {
-                    SenderName = "ayse_yilmaz",
-                    SenderAvatar = "https://randomuser.me/api/portraits/women/1.jpg",
-                    Content = "Toplantı 15:00'te olacak. Herkes hazır mı?",
-                    Timestamp = DateTime.Now.AddMinutes(-25)
-                },
-                new ChatMessage {
-                    SenderName = "mehmet_demir",
-                    SenderAvatar = "https://randomuser.me/api/portraits/men/2.jpg",
-                    Content = "Ben hazırım. Yeni proje hakkında konuşacağız değil mi?",
-                    Timestamp = DateTime.Now.AddMinutes(-10)
-                }
-            };
-
-            // 🔑 Giriş yapan kullanıcıyı al
             var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
-            if (groupId == 0)
+            // ➤ Grup bilgisi
+            var group = await _groupRepository.GetGroupWithMembersAsync(groupId);
+            if (group == null)
             {
-                // geçici test için
-                IsAdmin = true; // örnek olarak bu kullanıcı yöneticidir
+                // 404 durumuna düşür veya hata göster
+                GroupName = "Grup bulunamadı";
+                return;
             }
-            else
+
+            GroupName = group.Name;
+            GroupDescription = group.Description;
+            MemberCount = group.Members.Count;
+
+            Members = group.Members.Select(m => new GroupMemberInfo
             {
-                // TODO: _context.GroupMembers.FirstOrDefault(...) ile IsAdmin alınabilir
-                IsAdmin = false;
-            }
+                Username = m.User?.Username ?? "Bilinmeyen",
+                //AvatarUrl = m.User?.ProfileImagePath ?? "https://via.placeholder.com/50"
+            }).ToList();
+
+            // ➤ Grup mesajları
+            var messages = await _groupMessageRepository.GetGroupMessagesAsync(groupId);
+            Messages = messages.Select(m => new ChatMessage
+            {
+                SenderName = m.Sender?.Username ?? "Bilinmeyen",
+                //SenderAvatar = m.Sender?.ProfileImagePath ?? "https://via.placeholder.com/50",
+                Content = m.Content,
+                Timestamp = m.SentAt
+            }).ToList();
+
+            // ➤ Yönetici kontrolü
+            IsAdmin = await _groupRepository.IsUserGroupAdminAsync(groupId, currentUserId);
         }
 
-        public class GroupMember
+        public class GroupMemberInfo
         {
             public string Username { get; set; }
             public string AvatarUrl { get; set; }
         }
 
-        // FIX ME: Avatar kısmını silebiliriz daha rahat olur belki
-        // - Selim
         public class ChatMessage
         {
             public string SenderName { get; set; }
@@ -85,8 +78,5 @@ namespace ChatForLife.Pages.Chat
             public string Content { get; set; }
             public DateTime Timestamp { get; set; }
         }
-
-        // FIX ME: Ajax çağrısı ile mesaj verisi gelince onların kontrolü atanması kaydedilmesi vs.
-        // - Selim
     }
 }

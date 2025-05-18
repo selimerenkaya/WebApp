@@ -15,11 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ChatForLife")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-<<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+539f5d18317075d7533e6e9631e26553129b10d4")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+46709f8d341347dbf6b8f31f5fa6d4dce535907d")]
->>>>>>> 7b6921003b9b27110625584ed3f299d307b50725
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f54f8f92692c92455ec4fd8bd3f7954fc11b27f1")]
 [assembly: System.Reflection.AssemblyProductAttribute("ChatForLife")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ChatForLife")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
