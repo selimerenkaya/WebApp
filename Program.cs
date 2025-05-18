@@ -62,3 +62,17 @@ app.UseAuthentication(); // JWT kontrolü burada başlar
 app.UseAuthorization();
 app.MapRazorPages();
 app.Run();
+app.UseHttpsRedirection();       // HTTP → HTTPS yönlendirme    
+app.UseStaticFiles();            // wwwroot klasöründen statik dosya sunumu
+app.UseRouting();                // Route işlemleri
+app.UseAuthorization();          // Yetkilendirme kontrolü
+app.MapRazorPages();             // Razor Pages'i route'a bağlar
+
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.Migrate(); // 🧠 Bu satır EF migration'ları otomatik çalıştırır
+}
+
+app.Run();                       // Uygulamayı başlatır

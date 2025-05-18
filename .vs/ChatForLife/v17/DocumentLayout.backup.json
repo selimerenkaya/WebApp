@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\mahir\\source\\repos\\WebApp\\",
+  "WorkspaceRootPath": "C:\\Users\\Selim Eren Kaya\\Desktop\\web_proje\\WebApp\\",
   "Documents": [
     {
       "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -101,6 +101,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|c:\\users\\mahir\\source\\repos\\webapp\\pages\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{B204A892-2722-4FF8-AB27-4D8DA2BDCF84}|ChatForLife.csproj|solutionrelative:pages\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\eyupe\\Projeler\\WebApp\\gitignore.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:gitignore.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -462,8 +466,17 @@
               "RelativeToolTip": "Pages\\Error.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-14T00:34:42.189Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-14T00:34:42.189Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 1357,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:4:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             }
           ]
         }

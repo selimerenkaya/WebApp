@@ -1,4 +1,4 @@
-vversion: '3.8'
+version: '3.8'
 
 services:
   sqlserver:
@@ -19,7 +19,7 @@ services:
     depends_on:
       - sqlserver
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
     networks:
       - appnetwork
 
