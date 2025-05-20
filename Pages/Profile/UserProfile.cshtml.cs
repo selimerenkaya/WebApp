@@ -1,37 +1,125 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using ChatForLife.Services;
 
 namespace ChatForLife.Pages.Profile
 {
     public class UserProfileModel : PageModel
     {
+        private readonly IUserService _userService;
+        private readonly IGroupService _groupService;
+
+        public UserProfileModel(IUserService userService, IGroupService groupService)
+        {
+            _userService = userService;
+            _groupService = groupService;
+        }
+
         public ProfileViewModel Profile { get; set; }
         public List<Activity> RecentActivities { get; set; }
 
-        public void OnGet()
+        public async Task OnGetAsync(int userId = 0)
         {
-            // FIX ME: geçici veriler kullanılıyor gene, veritabanı bağlantısı sağlanınca hepsinin düzgün çekilmesi sağlanacak
+            // Varsayılan olarak mevcut kullanıcının profili
+            if (userId == 0)
+            {
+                userId = 1; // Gerçek uygulamada oturum açmış kullanıcı ID'si
+            }
+
+            var user = await _userService.GetUserByIdAsync(userId);
+            if (user == null)
+            {
+                // Kullanıcı bulunamadı, varsayılan değerler kullan
+                Profile = GetDefaultProfile();
+                RecentActivities = GetDefaultActivities();
+                return;
+            }
+
+            // Kullanıcı gruplarını getir
+            var userGroups = await _groupService.GetUserGroupsAsync(userId);
+            int activeGroups = userGroups?.Count() ?? 0;
+
+            // Kullanıcı aktivitelerini getir
+            var userActivities = await _userService.GetUserActivitiesAsync(userId);
+
             Profile = new ProfileViewModel
             {
-                Username = "selimeren",
-                FullName = "Selim Eren Kaya",
-                Bio = "Yazılım Geliştirici | .NET Core Uzmanı",
-                ProfileImageUrl = "https://randomuser.me/api/portraits/men/1.jpg",
-                BirthDate = new DateTime(1990, 5, 15),
-                FriendCount = 128,
-                ActiveGroups = 7,
-                TotalMessages = 2456,
-                JoinDate = new DateTime(2020, 3, 10)
+                Username = user.Username,
+                FullName = user.FullName,
+                Bio = user.Bio ?? "Henüz bir biyo yazılmamış",
+                ProfileImageUrl = user.ProfilePictureUrl ?? "https://randomuser.me/api/portraits/men/1.jpg",
+                BirthDate = user.BirthDate,
+                FriendCount = 0, // Gerçek uygulamada hesaplanacak
+                ActiveGroups = activeGroups,
+                TotalMessages = 0, // Gerçek uygulamada hesaplanacak
+                JoinDate = user.RegistrationDate
             };
 
-            RecentActivities = new List<Activity>
+            // Aktiviteleri dönüştür
+            RecentActivities = userActivities?.Select(a => new Activity
             {
-                new Activity { Icon = "💬", Description = "Yazılım Geliştiriciler grubunda yeni mesaj", TimeAgo = "12 dakika önce" },
-                new Activity { Icon = "👍", Description = "Mehmet'in gönderisini beğendi", TimeAgo = "1 saat önce" },
-                new Activity { Icon = "👥", Description = "Ayşe ile arkadaş oldu", TimeAgo = "2 gün önce" },
-                new Activity { Icon = "📝", Description = "Profil bilgilerini güncelledi", TimeAgo = "1 hafta önce" }
+                Icon = a.Icon,
+                Description = a.Description,
+                TimeAgo = GetTimeAgo(a.Timestamp)
+            }).ToList() ?? GetDefaultActivities();
+        }
+
+        private ProfileViewModel GetDefaultProfile()
+        {
+            return new ProfileViewModel
+            {
+                Username = "kullanıcı",
+                FullName = "Örnek Kullanıcı",
+                Bio = "Bu bir örnek profil biyografisidir.",
+                ProfileImageUrl = "https://randomuser.me/api/portraits/men/1.jpg",
+                BirthDate = new DateTime(1990, 1, 1),
+                FriendCount = 0,
+                ActiveGroups = 0,
+                TotalMessages = 0,
+                JoinDate = DateTime.Now.AddYears(-1)
             };
+        }
+
+        private List<Activity> GetDefaultActivities()
+        {
+            return new List<Activity>
+            {
+                new Activity { Icon = "👋", Description = "Siteye üye oldu", TimeAgo = "1 yıl önce" }
+            };
+        }
+
+        private string GetTimeAgo(DateTime date)
+        {
+            var timeSpan = DateTime.Now - date;
+
+            if (timeSpan.TotalMinutes < 60)
+            {
+                return $"{(int)timeSpan.TotalMinutes} dakika önce";
+            }
+
+            if (timeSpan.TotalHours < 24)
+            {
+                return $"{(int)timeSpan.TotalHours} saat önce";
+            }
+
+            if (timeSpan.TotalDays < 7)
+            {
+                return $"{(int)timeSpan.TotalDays} gün önce";
+            }
+
+            if (timeSpan.TotalDays < 30)
+            {
+                return $"{(int)(timeSpan.TotalDays / 7)} hafta önce";
+            }
+
+            if (timeSpan.TotalDays < 365)
+            {
+                return $"{(int)(timeSpan.TotalDays / 30)} ay önce";
+            }
+
+            return $"{(int)(timeSpan.TotalDays / 365)} yıl önce";
         }
 
         public class ProfileViewModel
@@ -53,8 +141,5 @@ namespace ChatForLife.Pages.Profile
             public string Description { get; set; }
             public string TimeAgo { get; set; }
         }
-        // FIX ME: Ajax çağrısı ile çekilen verilerin veritabanına kaydı sağlanacak düzenle butonuna basıldığında vs. 
-        // Ajax çağrısı tam olarak benim kısmıma mı giriyor burada emin değilim ondan geçici olarak yazmadım ama yazarım illa
-        // - Selim
     }
 }

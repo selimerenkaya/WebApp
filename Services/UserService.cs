@@ -18,7 +18,10 @@ namespace ChatForLife.Services
             _userRepository = userRepository;
             _activityRepository = activityRepository;
         }
-
+        public async Task<IEnumerable<User>> GetAllUsersAsync()
+        {
+            return await _userRepository.GetAllAsync();
+        }
         public async Task<User> GetUserByIdAsync(int id)
         {
             return await _userRepository.GetByIdAsync(id);
@@ -58,6 +61,8 @@ namespace ChatForLife.Services
                 PasswordHash = HashPassword(password),
                 FullName = fullName,
                 BirthDate = birthDate,
+                Bio = string.Empty,
+                ProfilePictureUrl = "/images/default.png",
                 RegistrationDate = DateTime.Now
             };
 

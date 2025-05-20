@@ -4,11 +4,27 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using ChatForLife.Services;
+using ChatForLife.Models.Entities;
 
 namespace ChatForLife.Pages.Chat
 {
     public class DirectModel : PageModel
     {
+        private readonly IUserService _userService;
+        private readonly IMessageService _messageService;
+        private readonly IGroupService _groupService;
+
+        public DirectModel(
+            IUserService userService,
+            IMessageService messageService,
+            IGroupService groupService)
+        {
+            _userService = userService;
+            _messageService = messageService;
+            _groupService = groupService;
+        }
+
         public UserProfile Recipient { get; set; }
         public int CommonGroups { get; set; }
         public List<DirectMessage> Messages { get; set; }
@@ -16,55 +32,58 @@ namespace ChatForLife.Pages.Chat
         [BindProperty]
         public NewMessage Message { get; set; }
 
-        public void OnGet(int userId)
+        public async Task<IActionResult> OnGetAsync(int userId)
         {
-            // Örnek veriler - Gerçek uygulamada veritabanýndan çekilecek
+            // Alýcý kullanýcý bilgilerini getir
+            var user = await _userService.GetUserByIdAsync(userId);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
             Recipient = new UserProfile
             {
-                Id = userId,
-                Username = "ayse_yilmaz",
-                AvatarUrl = "https://randomuser.me/api/portraits/women/1.jpg",
-                Status = "Çevrimiçi",
-                JoinDate = new DateTime(2021, 2, 15)
+                Id = user.Id,
+                Username = user.Username,
+                AvatarUrl = user.ProfilePictureUrl ?? "https://randomuser.me/api/portraits/men/1.jpg", // Varsayýlan resim
+                Status = "Çevrimiçi", // Bu statik, gerçekte bir statü mekanizmasý olmalý
+                JoinDate = user.RegistrationDate
             };
 
-            CommonGroups = 3;
+            // Ortak gruplarý bul (gerçek uygulamada daha karmaþýk olacak)
+            var currentUserId = 1; // Þu an için sabit, gerçekte oturum açmýþ kullanýcýnýn ID'si olacak
+            var userGroups = await _groupService.GetUserGroupsAsync(userId);
+            var currentUserGroups = await _groupService.GetUserGroupsAsync(currentUserId);
 
-            Messages = new List<DirectMessage>
+            // Ortak gruplarý bul (gerçek kullanýcý gruplarýyla yapýlacak)
+            CommonGroups = 2; // Örnek deðer
+
+            // Mesajlarý getir
+            var dbMessages = await _messageService.GetMessagesBetweenUsersAsync(currentUserId, userId);
+
+            Messages = dbMessages.Select(m => new DirectMessage
             {
-                new DirectMessage {
-                    SenderId = userId,
-                    SenderAvatar = Recipient.AvatarUrl,
-                    Content = "Merhaba! Nasýlsýn?",
-                    Timestamp = DateTime.Now.AddHours(-2),
-                    IsCurrentUser = false
-                },
-                new DirectMessage {
-                    SenderId = 1, // Mevcut kullanýcý ID'si
-                    SenderAvatar = "https://randomuser.me/api/portraits/men/1.jpg",
-                    Content = "Ýyiyim teþekkürler, sen nasýlsýn?",
-                    Timestamp = DateTime.Now.AddHours(-1),
-                    IsCurrentUser = true
-                },
-                new DirectMessage {
-                    SenderId = userId,
-                    SenderAvatar = Recipient.AvatarUrl,
-                    Content = "Ben de iyiyim. Proje hakkýnda konuþabilir miyiz?",
-                    Timestamp = DateTime.Now.AddMinutes(-30),
-                    IsCurrentUser = false
-                }
-            };
+                SenderId = m.SenderId,
+                SenderAvatar = m.SenderId == userId ? Recipient.AvatarUrl : "https://randomuser.me/api/portraits/men/1.jpg",
+                Content = m.Content,
+                Timestamp = m.SentAt,
+                IsCurrentUser = m.SenderId == currentUserId
+            }).ToList();
+
+            return Page();
         }
 
-        public IActionResult OnPost(int userId)
+        public async Task<IActionResult> OnPostAsync(int userId)
         {
             if (!ModelState.IsValid)
             {
-                return Page();
+                return await OnGetAsync(userId);
             }
 
-            // TODO: Mesajý veritabanýna kaydet
-            // Örnek: _messageService.SaveMessage(userId, NewMessage.Content);
+            // Þu an için sabit ID kullanýyoruz, gerçekte oturum açmýþ kullanýcýnýn ID'si olacak
+            int currentUserId = 1;
+
+            await _messageService.SendMessageAsync(currentUserId, userId, Message.Content);
 
             return RedirectToPage(new { userId });
         }

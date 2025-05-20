@@ -10,12 +10,14 @@ namespace ChatForLife.Services
     {
         private readonly IGroupRepository _groupRepository;
         private readonly IGroupMessageRepository _groupMessageRepository;
+        private readonly IRepository<User> _userRepository;
         private readonly IRepository<GroupMember> _groupMemberRepository;
         private readonly IRepository<Activity> _activityRepository;
 
         public GroupService(
             IGroupRepository groupRepository,
             IGroupMessageRepository groupMessageRepository,
+            IRepository<User> userRepository,
             IRepository<GroupMember> groupMemberRepository,
             IRepository<Activity> activityRepository)
         {
@@ -23,6 +25,7 @@ namespace ChatForLife.Services
             _groupMessageRepository = groupMessageRepository;
             _groupMemberRepository = groupMemberRepository;
             _activityRepository = activityRepository;
+            _userRepository = userRepository;
         }
 
         public async Task<Group> GetGroupByIdAsync(int groupId)
@@ -37,6 +40,12 @@ namespace ChatForLife.Services
 
         public async Task<Group> CreateGroupAsync(string name, string description, int privacy, int creatorUserId)
         {
+
+            var user = await _userRepository.GetByIdAsync(creatorUserId);
+            if (user == null)
+            {
+                throw new InvalidOperationException($"UserId {creatorUserId} ile ilişkili bir kullanıcı bulunamadı.");
+            }
             var group = new Group
             {
                 Name = name,
@@ -116,41 +125,46 @@ namespace ChatForLife.Services
             await _activityRepository.SaveChangesAsync();
 
         }
-            public async Task RemoveMemberFromGroupAsync(int groupId, int userId)
+        public async Task RemoveMemberFromGroupAsync(int groupId, int userId)
+        {
+            var groupMembers = await _groupMemberRepository.FindAsync(
+                gm => gm.GroupId == groupId && gm.UserId == userId);
+
+            foreach (var member in groupMembers)
             {
-                var groupMembers = await _groupMemberRepository.FindAsync(
-                    gm => gm.GroupId == groupId && gm.UserId == userId);
-
-                foreach (var member in groupMembers)
-                {
-                    await _groupMemberRepository.RemoveAsync(member);
-                }
-
-                await _groupMemberRepository.SaveChangesAsync();
-
-                // Gruptan ayrılma aktivitesi
-                var group = await _groupRepository.GetByIdAsync(groupId);
-                var activity = new Activity
-                {
-                    UserId = userId,
-                    Type = "LeaveGroup",
-                    Description = $"{group.Name} grubundan ayrıldı",
-                    Icon = "🚶",
-                    Timestamp = DateTime.Now
-                };
-
-                await _activityRepository.AddAsync(activity);
-                await _activityRepository.SaveChangesAsync();
+                await _groupMemberRepository.RemoveAsync(member);
             }
 
-            public async Task<bool> IsUserInGroupAsync(int groupId, int userId)
-            {
-                return await _groupRepository.IsUserInGroupAsync(groupId, userId);
-            }
+            await _groupMemberRepository.SaveChangesAsync();
 
-            public async Task<bool> IsUserGroupAdminAsync(int groupId, int userId)
+               // Gruptan ayrılma aktivitesi
+            var group = await _groupRepository.GetByIdAsync(groupId);
+            var activity = new Activity
             {
-                return await _groupRepository.IsUserGroupAdminAsync(groupId, userId);
-            }
+                UserId = userId,
+                Type = "LeaveGroup",
+                Description = $"{group.Name} grubundan ayrıldı",
+                Icon = "🚶",
+                Timestamp = DateTime.Now
+            };
+
+            await _activityRepository.AddAsync(activity);
+            await _activityRepository.SaveChangesAsync();
+        }
+
+        public async Task<bool> IsUserInGroupAsync(int groupId, int userId)
+        {
+            return await _groupRepository.IsUserInGroupAsync(groupId, userId);
+        }
+
+        public async Task<bool> IsUserGroupAdminAsync(int groupId, int userId)
+        {
+            return await _groupRepository.IsUserGroupAdminAsync(groupId, userId);
+        }
+
+        public async Task<Group> GetGroupWithMembersAsync(int groupId)
+        {
+                return await _groupRepository.GetGroupWithMembersAsync(groupId);
         }
     }
+}
