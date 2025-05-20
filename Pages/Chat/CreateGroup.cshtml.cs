@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using ChatForLife.Services;
+using System.Security.Claims;
 
 namespace ChatForLife.Pages.Chat
 {
@@ -54,24 +55,51 @@ namespace ChatForLife.Pages.Chat
                 return Page();
             }
 
-            // Grup oluþtur
-            int currentUserId = 1; // Gerçek uygulamada oturum açmýþ kullanýcý ID'si
-            var group = await _groupService.CreateGroupAsync(
-                gForm.Name,
-                gForm.Description,
-                gForm.Privacy,
-                currentUserId);
-
-            // Seçilen üyeleri gruba ekle
-            if (SelectedMembers != null && SelectedMembers.Count > 0)
+            // Kullanýcýnýn oturum açýp açmadýðýný kontrol et
+            if (!User.Identity.IsAuthenticated)
             {
-                foreach (var memberId in SelectedMembers)
-                {
-                    await _groupService.AddMemberToGroupAsync(group.Id, memberId);
-                }
+                return RedirectToPage("/Account/Login");
             }
 
-            return RedirectToPage("/Chat/Group", new { groupId = group.Id });
+            // Oturum açmýþ kullanýcýnýn ID'sini al
+            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            int currentUserId;
+
+            if (!int.TryParse(userIdClaim, out currentUserId))
+            {
+                // ID alýnamazsa hatayý iþle
+                ModelState.AddModelError("", "Kullanýcý kimliði alýnamadý.");
+                await OnGetAsync();
+                return Page();
+            }
+
+            try
+            {
+                // Grup oluþtur
+                var group = await _groupService.CreateGroupAsync(
+                    gForm.Name,
+                    gForm.Description,
+                    gForm.Privacy,
+                    currentUserId);
+
+                // Seçilen üyeleri gruba ekle
+                if (SelectedMembers != null && SelectedMembers.Count > 0)
+                {
+                    foreach (var memberId in SelectedMembers)
+                    {
+                        await _groupService.AddMemberToGroupAsync(group.Id, memberId);
+                    }
+                }
+
+                return RedirectToPage("/Chat/Group", new { groupId = group.Id });
+            }
+            catch (InvalidOperationException ex)
+            {
+                // Kullanýcý bulunamadý hatasýný iþle
+                ModelState.AddModelError("", ex.Message);
+                await OnGetAsync();
+                return Page();
+            }
         }
 
         public class Friend
