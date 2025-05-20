@@ -1,4 +1,6 @@
 ﻿using ChatForLife.Models;
+using ChatForLife.Repositories;
+using ChatForLife.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,7 +17,20 @@ builder.Services.AddRazorPages()
         options.Conventions.AddPageRoute("/Account/Register", "kayit");
     });
 
+// Repository ve Service sınıflarının kaydı
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IGroupRepository, GroupRepository>();
+builder.Services.AddScoped<IMessageRepository, MessageRepository>();
+builder.Services.AddScoped<IGroupMessageRepository, GroupMessageRepository>();
+
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IMessageService, MessageService>();
+builder.Services.AddScoped<IGroupService, GroupService>();
+
 var app = builder.Build();
+
+
 
 if (!app.Environment.IsDevelopment())
 {
