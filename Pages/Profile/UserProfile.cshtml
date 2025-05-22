@@ -1,0 +1,110 @@
+﻿@page
+@model ChatForLife.Pages.Profile.UserProfileModel
+@{
+    ViewData["Title"] = "Profil";
+    Layout = "_Layout";
+}
+
+<div class="container mx-auto px-4 py-8 max-w-4xl">
+    <!-- Profil Başlık -->
+    <div class="bg-white bg-opacity-10 rounded-xl p-6 mb-6 backdrop-blur-sm border border-white border-opacity-20">
+        <div class="flex flex-col md:flex-row items-center gap-6">
+            <!-- Profil Resmi -->
+            <div class="relative">
+                <img src="@Model.Profile.ProfileImageUrl"
+                     class="w-32 h-32 rounded-full border-4 border-white border-opacity-30 object-cover"
+                     alt="@Model.Profile.Username profil fotoğrafı">
+                <button class="absolute bottom-0 right-0 bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M4 5a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V7a2 2 0 00-2-2h-1.586a1 1 0 01-.707-.293l-1.121-1.121A2 2 0 0011.172 3H8.828a2 2 0 00-1.414.586L6.293 4.707A1 1 0 015.586 5H4zm6 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Kullanıcı Bilgileri -->
+            <div class="flex-1 text-center md:text-left">
+                <h1 class="text-3xl font-bold">@Model.Profile.Username</h1>
+                <p class="text-gray-300 mb-2">@Model.Profile.FullName</p>
+                <p class="text-gray-400 mb-4">@Model.Profile.Bio</p>
+
+                <div class="flex flex-wrap gap-2 justify-center md:justify-start">
+                    <span class="bg-white bg-opacity-10 px-3 py-1 rounded-full text-sm">🎂 @Model.Profile.BirthDate.ToString("dd/MM/yyyy")</span>
+                    <span class="bg-white bg-opacity-10 px-3 py-1 rounded-full text-sm">👥 @Model.Profile.FriendCount arkadaş</span>
+                </div>
+            </div>
+
+            <!-- Aksiyon Butonları -->
+            <!-- FIX ME: Henüz işlevleri sağlanmadı daha sonra yapılması için konuldu, uykum vardı yarına bıraktım proje az daha gelişsin diye 
+                - Selim
+            -->
+            <div class="flex gap-2">
+                <a asp-page="/Profile/Edit" class="btn-secondary px-4 py-2 rounded-lg flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                    </svg>
+                    Düzenle
+                </a>
+                <a href="#" class="btn-primary px-4 py-2 rounded-lg flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6z" />
+                    </svg>
+                    Paylaş
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- İstatistik Kartları -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div class="bg-white bg-opacity-5 p-4 rounded-lg border border-white border-opacity-10 hover:bg-opacity-10 transition">
+            <h3 class="text-lg font-semibold mb-2 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd" />
+                </svg>
+                Aktif Gruplar
+            </h3>
+            <p class="text-2xl">@Model.Profile.ActiveGroups</p>
+        </div>
+        <div class="bg-white bg-opacity-5 p-4 rounded-lg border border-white border-opacity-10 hover:bg-opacity-10 transition">
+            <h3 class="text-lg font-semibold mb-2 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z" clip-rule="evenodd" />
+                </svg>
+                Toplam Mesaj
+            </h3>
+            <p class="text-2xl">@Model.Profile.TotalMessages</p>
+        </div>
+        <div class="bg-white bg-opacity-5 p-4 rounded-lg border border-white border-opacity-10 hover:bg-opacity-10 transition">
+            <h3 class="text-lg font-semibold mb-2 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
+                </svg>
+                Katılım Tarihi
+            </h3>
+            <p class="text-xl">@Model.Profile.JoinDate.ToString("MMMM yyyy")</p>
+        </div>
+    </div>
+
+    <!-- Son Etkinlikler -->
+    <div class="bg-white bg-opacity-10 rounded-xl p-6 backdrop-blur-sm border border-white border-opacity-20">
+        <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Son Etkinlikler
+        </h2>
+
+        <div class="space-y-4">
+            @foreach (var activity in Model.RecentActivities)
+            {
+                <div class="flex items-start gap-3 p-3 hover:bg-white hover:bg-opacity-5 rounded-lg transition">
+                    <div class="text-2xl mt-1">@activity.Icon</div>
+                    <div>
+                        <p class="font-medium">@activity.Description</p>
+                        <p class="text-sm text-gray-400">@activity.TimeAgo</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
