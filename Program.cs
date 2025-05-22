@@ -1,4 +1,11 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using ChatForLife.Models;
+using Microsoft.EntityFrameworkCore;
+
+var builder = WebApplication.CreateBuilder(args);
+
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Razor sayfalarını servise ekler
 builder.Services.AddRazorPages()
@@ -21,18 +28,22 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-app.UseRouting();
-app.UseAuthorization();
 
-app.MapRazorPages(); 
+app.UseHttpsRedirection();       // HTTP → HTTPS yönlendirme    
+app.UseStaticFiles();            // wwwroot klasöründen statik dosya sunumu
+app.UseRouting();                // Route işlemleri
+app.UseAuthorization();          // Yetkilendirme kontrolü
+app.MapRazorPages();             // Razor Pages'i route'a bağlar
 app.MapControllers(); 
-//controller route a ekleme
-
-
+// http://localhost:5228/swagger ile kontrol edebilir
 app.UseSwagger();
 app.UseSwaggerUI(); 
- // http://localhost:5228/swagger ile kontrol edebilir
 
-app.Run(); 
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.Migrate(); // 🧠 Bu satır EF migration'ları otomatik çalıştırır
+}
+
+app.Run();                       // Uygulamayı başlatır
