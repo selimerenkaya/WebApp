@@ -15,5 +15,7 @@ namespace ChatForLife.Services
         Task RemoveMemberFromGroupAsync(int groupId, int userId);
         Task<bool> IsUserInGroupAsync(int groupId, int userId);
         Task<bool> IsUserGroupAdminAsync(int groupId, int userId);
+
+        Task<Group> GetGroupWithMembersAsync(int groupId);
     }
 }

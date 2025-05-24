@@ -1,11 +1,19 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
+using ChatForLife.Services;
 
 namespace ChatForLife.Pages.Account
 {
     public class LoginModel : PageModel
     {
+        private readonly IUserService _userService;
+
+        public LoginModel(IUserService userService)
+        {
+            _userService = userService;
+        }
+
         [BindProperty]
         [Required(ErrorMessage = "Kullanýcý adý zorunludur")]
         public string Username { get; set; }
@@ -22,7 +30,7 @@ namespace ChatForLife.Pages.Account
         {
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
@@ -40,10 +48,10 @@ namespace ChatForLife.Pages.Account
                 return Page();
             }
 
-            // FIX ME: Gerçek kimlik doðrulama mantýðýný buraya eklenecek
-            // Örnek kontrol olarak gerçekleþtirmek için bunu yazdým
-            // veritabaný baðlantýsý kurulunca onunla saðlanacak
-            if (Username != "demo" || Password != "demo123")
+            // Kullanýcý doðrulama
+            var isAuthenticated = await _userService.AuthenticateAsync(Username, Password);
+
+            if (!isAuthenticated)
             {
                 if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
                 {

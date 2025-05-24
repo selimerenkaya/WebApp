@@ -2,39 +2,104 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
+using ChatForLife.Services;
+using System.Security.Claims;
 
 namespace ChatForLife.Pages.Chat
 {
     public class CreateGroupModel : PageModel
     {
-        public List<Friend> Friends { get; set; }
-        public GroupForm gForm { get; set; }
+        private readonly IGroupService _groupService;
+        private readonly IUserService _userService;
 
-        public void OnGet()
+        public CreateGroupModel(IGroupService groupService, IUserService userService)
         {
-            // Örnek arkadaþ listesi - Gerçek uygulamada veritabanýndan çekilecek
-            Friends = new List<Friend>
-            {
-                new Friend { Id = 1, Username = "ahmetkaya", AvatarUrl = "https://randomuser.me/api/portraits/men/1.jpg" },
-                new Friend { Id = 2, Username = "ayse_yilmaz", AvatarUrl = "https://randomuser.me/api/portraits/women/1.jpg" },
-                new Friend { Id = 3, Username = "mehmetdemir", AvatarUrl = "https://randomuser.me/api/portraits/men/2.jpg" },
-                new Friend { Id = 4, Username = "fatih_can", AvatarUrl = "https://randomuser.me/api/portraits/men/3.jpg" }
-            };
+            _groupService = groupService;
+            _userService = userService;
         }
 
-        public IActionResult OnPost()
+        public List<Friend> Friends { get; set; }
+
+        [BindProperty]
+        public GroupForm gForm { get; set; }
+
+        [BindProperty]
+        public List<int> SelectedMembers { get; set; }
+
+        public async Task OnGetAsync()
+        {
+            // Arkadaþ listesi için veritabanýndan kullanýcýlarý çek
+            // Gerçek uygulama için arkadaþlýk mekanizmasý kurulmalý
+            Friends = new List<Friend>();
+            var users = await _userService.GetAllUsersAsync();
+
+            foreach (var user in users)
+            {
+                if (user.Id != 1) // Mevcut kullanýcý deðilse (þimdilik sabit ID)
+                {
+                    Friends.Add(new Friend
+                    {
+                        Id = user.Id,
+                        Username = user.Username,
+                        AvatarUrl = user.ProfilePictureUrl ?? "https://randomuser.me/api/portraits/men/1.jpg"
+                    });
+                }
+            }
+        }
+
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
-                // Hata durumunda sayfayý tekrar göster
+                await OnGetAsync();
                 return Page();
             }
 
-            // TODO: Grubu veritabanýna kaydet
-            // var groupId = _groupService.CreateGroup(GroupForm, SelectedMembers);
+            // Kullanýcýnýn oturum açýp açmadýðýný kontrol et
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToPage("/Account/Login");
+            }
 
-            // Baþarýlý olursa grup sayfasýna yönlendir
-            return RedirectToPage("/Chat/Group", new { groupId = 1 /* gerçek ID */ });
+            // Oturum açmýþ kullanýcýnýn ID'sini al
+            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            int currentUserId;
+
+            if (!int.TryParse(userIdClaim, out currentUserId))
+            {
+                // ID alýnamazsa hatayý iþle
+                ModelState.AddModelError("", "Kullanýcý kimliði alýnamadý.");
+                await OnGetAsync();
+                return Page();
+            }
+
+            try
+            {
+                // Grup oluþtur
+                var group = await _groupService.CreateGroupAsync(
+                    gForm.Name,
+                    gForm.Description,
+                    gForm.Privacy,
+                    currentUserId);
+
+                // Seçilen üyeleri gruba ekle
+                if (SelectedMembers != null && SelectedMembers.Count > 0)
+                {
+                    foreach (var memberId in SelectedMembers)
+                    {
+                        await _groupService.AddMemberToGroupAsync(group.Id, memberId);
+                    }
+                }
+
+                return RedirectToPage("/Chat/Group", new { groupId = group.Id });
+            }
+            catch (InvalidOperationException ex)
+            {
+                // Kullanýcý bulunamadý hatasýný iþle
+                ModelState.AddModelError("", ex.Message);
+                await OnGetAsync();
+                return Page();
+            }
         }
 
         public class Friend
@@ -46,7 +111,6 @@ namespace ChatForLife.Pages.Chat
 
         public class GroupForm
         {
-
             [Required(ErrorMessage = "Grup adý gereklidir")]
             [StringLength(50, ErrorMessage = "Grup adý en fazla 50 karakter olabilir")]
             [Display(Name = "Grup Adý")]
