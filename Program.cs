@@ -72,7 +72,7 @@ app.MapRazorPages();
 // http://localhost:5228/swagger ile kontrol edebilir
 app.UseSwagger();
 app.UseSwaggerUI(); 
-
+app.MapControllers(); 
 
 using (var scope = app.Services.CreateScope())
 {
@@ -82,4 +82,4 @@ using (var scope = app.Services.CreateScope())
 
 app.Run();                       // Uygulamayı başlatır
       // Razor Pages'i route'a bağlar
-app.MapControllers(); 
+
