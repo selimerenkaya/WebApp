@@ -68,5 +68,18 @@ app.Use(async (context, next) =>
 app.UseRouting();                // Route işlemleri
 
 app.UseAuthorization();          // Yetkilendirme kontrolü
-app.MapRazorPages();             // Razor Pages'i route'a bağlar
+app.MapRazorPages();      
+// http://localhost:5228/swagger ile kontrol edebilir
+app.UseSwagger();
+app.UseSwaggerUI(); 
+
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.Migrate(); // 🧠 Bu satır EF migration'ları otomatik çalıştırır
+}
+
+app.Run();                       // Uygulamayı başlatır
+      // Razor Pages'i route'a bağlar
 app.MapControllers(); 
