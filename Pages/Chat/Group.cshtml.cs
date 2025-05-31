@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+ï»¿using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
@@ -6,18 +6,23 @@ using System.Threading.Tasks;
 using System.Linq;
 using ChatForLife.Repositories;
 using ChatForLife.Models;
+using ChatForLife.Services;
+using Microsoft.AspNetCore.Mvc;
+
 
 namespace ChatForLife.Pages.Chat
 {
     public class GroupModel : PageModel
     {
-        private readonly IGroupRepository _groupRepository;
-        private readonly IGroupMessageRepository _groupMessageRepository;
 
-        public GroupModel(IGroupRepository groupRepo, IGroupMessageRepository messageRepo)
+        private readonly IGroupService _groupService;
+        private readonly IUserService _userService;
+
+        public GroupModel(IGroupService groupService, IUserService userService)
         {
-            _groupRepository = groupRepo;
-            _groupMessageRepository = messageRepo;
+            _groupService = groupService;
+            _userService = userService;
+
         }
 
         public string GroupName { get; set; }
@@ -28,41 +33,64 @@ namespace ChatForLife.Pages.Chat
 
         public bool IsAdmin { get; set; }
 
-        public async Task OnGetAsync(int groupId)
-        {
-            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
-            // ➤ Grup bilgisi
-            var group = await _groupRepository.GetGroupWithMembersAsync(groupId);
+        public async Task<IActionResult> OnGetAsync(int groupId)
+        {
+            var group = await _groupService.GetGroupByIdAsync(groupId);
             if (group == null)
             {
-                // 404 durumuna düşür veya hata göster
-                GroupName = "Grup bulunamadı";
-                return;
+                return NotFound();
             }
-
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            // â¤ YÃ¶netici kontrolÃ¼
+            IsAdmin = await _groupRepository.IsUserGroupAdminAsync(groupId, currentUserId);
+            
             GroupName = group.Name;
             GroupDescription = group.Description;
-            MemberCount = group.Members.Count;
 
-            Members = group.Members.Select(m => new GroupMemberInfo
+            // Grup üyelerini getir
+            var dbGroupMembers = await _groupService.GetGroupWithMembersAsync(groupId);
+            Members = new List<GroupMember>();
+            MemberCount = 0;
+
+            if (dbGroupMembers != null && dbGroupMembers.Members != null)
             {
-                Username = m.User?.Username ?? "Bilinmeyen",
-                //AvatarUrl = m.User?.ProfileImagePath ?? "https://via.placeholder.com/50"
-            }).ToList();
+                MemberCount = dbGroupMembers.Members.Count;
 
-            // ➤ Grup mesajları
-            var messages = await _groupMessageRepository.GetGroupMessagesAsync(groupId);
-            Messages = messages.Select(m => new ChatMessage
+                foreach (var member in dbGroupMembers.Members)
+                {
+                    var user = await _userService.GetUserByIdAsync(member.UserId);
+                    if (user != null)
+                    {
+                        Members.Add(new GroupMember
+                        {
+                            Username = user.Username,
+                            AvatarUrl = user.ProfilePictureUrl ?? "https://randomuser.me/api/portraits/men/1.jpg"
+                        });
+                    }
+                }
+            }
+
+            // Grup mesajlarýný getir
+            var dbMessages = await _groupService.GetGroupMessagesAsync(groupId);
+            Messages = new List<ChatMessage>();
+
+            foreach (var message in dbMessages)
             {
-                SenderName = m.Sender?.Username ?? "Bilinmeyen",
-                //SenderAvatar = m.Sender?.ProfileImagePath ?? "https://via.placeholder.com/50",
-                Content = m.Content,
-                Timestamp = m.SentAt
-            }).ToList();
+                var sender = await _userService.GetUserByIdAsync(message.SenderId);
+                if (sender != null)
+                {
+                    Messages.Add(new ChatMessage
+                    {
+                        SenderName = sender.Username,
+                        SenderAvatar = sender.ProfilePictureUrl ?? "https://randomuser.me/api/portraits/men/1.jpg",
+                        Content = message.Content,
+                        Timestamp = message.SentAt
+                    });
+                }
+            }
 
-            // ➤ Yönetici kontrolü
-            IsAdmin = await _groupRepository.IsUserGroupAdminAsync(groupId, currentUserId);
+            return Page();
         }
 
         public class GroupMemberInfo

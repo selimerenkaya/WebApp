@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+
 using Microsoft.Extensions.Options;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -10,23 +11,34 @@ using ChatForLife.Repositories;
 using System.Threading.Tasks;
 using BCrypt.Net;
 
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.ComponentModel.DataAnnotations;
+using ChatForLife.Services;
+
+
 namespace ChatForLife.Pages.Account
 {
     public class LoginModel : PageModel
     {
+
         private readonly JwtSettings _jwtSettings;
         private readonly IUserRepository _userRepository;
+        private readonly IUserService _userService;
 
-        public LoginModel(IOptions<JwtSettings> jwtSettings, IUserRepository userRepository)
+        public LoginModel(IOptions<JwtSettings> jwtSettings, IUserService userService)
         {
             _jwtSettings = jwtSettings.Value;
-            _userRepository = userRepository;
+            _userService = userService;
         }
 
         [BindProperty]
+        [Required(ErrorMessage = "KullanÄ±cÄ± adÄ± zorunludur")]
         public string Username { get; set; }
 
         [BindProperty]
+        [Required(ErrorMessage = "Åžifre zorunludur")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [BindProperty]
@@ -34,21 +46,54 @@ namespace ChatForLife.Pages.Account
 
         public async Task<IActionResult> OnPostAsync()
         {
-            // 1. Kullanýcýyý veritabanýndan getir
-            var user = await _userRepository.GetByUsernameAsync(Username);
 
-            // 2. Þifre kontrolü 
-            if (user != null && BCrypt.Net.BCrypt.Verify(Password, user.PasswordHash))
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            if (!ModelState.IsValid)
             {
-                // 3. JWT claim'leri hazýrla
+
+                    var errors = ModelState.Values
+                        .SelectMany(v => v.Errors)
+                        .Select(e => e.ErrorMessage)
+                        .ToList();
+
+
+            // KullanÄ±cÄ± doÄŸrulama
+            var user = await _userService.GetUserByUsernameAsync(Username);
+            if (user == null || !await _userService.AuthenticateAsync(Username, Password))
+            {
+                if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+                {
+                    return new JsonResult(new
+                    {
+                        success = false,
+                        error = "KullanÄ±cÄ± adÄ± veya ÅŸifre hatalÄ±"
+                    });
+                }
+
+                ModelState.AddModelError(string.Empty, "KullanÄ±cÄ± adÄ± veya ÅŸifre hatalÄ±");
+                return Page();
+            }
+
+            // KullanÄ±cÄ± claim bilgileri
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, user.Username),
+                new Claim("UserId", user.Id.ToString()),
+                new Claim(ClaimTypes.Email, user.Email ?? "")
+                // EÄŸer roller varsa ekleyebilirsin: new Claim(ClaimTypes.Role, user.Role)
+            };
+            
+            // 3. JWT claim'leri hazï¿½rla
                 var claims = new[]
                 {
                     new Claim(ClaimTypes.Name, user.Username),
                     new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                     new Claim(ClaimTypes.Role, "User")
                 };
-
-                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key));
+            
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key));
                 var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
                 var token = new JwtSecurityToken(
@@ -58,10 +103,9 @@ namespace ChatForLife.Pages.Account
                     expires: DateTime.UtcNow.AddMinutes(_jwtSettings.ExpiresInMinutes),
                     signingCredentials: creds
                 );
-
                 var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
 
-                // 4. Token'ý cookie'ye yaz (HttpOnly + secure)
+                // 4. Token'ï¿½ cookie'ye yaz (HttpOnly + secure)
                 Response.Cookies.Append("access_token", tokenString, new CookieOptions
                 {
                     HttpOnly = true,
@@ -69,11 +113,25 @@ namespace ChatForLife.Pages.Account
                     SameSite = SameSiteMode.Strict,
                     Expires = DateTime.UtcNow.AddMinutes(_jwtSettings.ExpiresInMinutes)
                 });
+            
+            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var principal = new ClaimsPrincipal(identity);
 
+            var authProperties = new AuthenticationProperties
+            {
+                IsPersistent = RememberMe,
+                ExpiresUtc = DateTime.UtcNow.AddHours(2),
+                AllowRefresh = true
+            };
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, authProperties);
+
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            {
                 return new JsonResult(new { success = true });
             }
 
-            return new JsonResult(new { success = false, error = "Kullanýcý adý veya þifre hatalý." });
+            return new JsonResult(new { success = false, error = "Kullanï¿½cï¿½ adï¿½ veya ï¿½ifre hatalï¿½." });
         }
     }
 }

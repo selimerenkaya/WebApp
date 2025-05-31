@@ -1,3 +1,4 @@
+
 ﻿using ChatForLife.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -9,6 +10,7 @@ using ChatForLife.Repositories;
 using ChatForLife.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+
 using Microsoft.Net.Http.Headers;
 
 
@@ -17,7 +19,6 @@ var builder = WebApplication.CreateBuilder(args);
 // ---------------------- VERİTABANI ----------------------
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
 
 // ---------------------- RAZOR PAGES ----------------------
 builder.Services.AddRazorPages()
@@ -30,6 +31,7 @@ builder.Services.AddRazorPages()
         options.Conventions.AuthorizeFolder("/Chat"); // Tüm Chat klasörü koruma altında
         options.Conventions.AllowAnonymousToPage("/Account/Login");
         options.Conventions.AllowAnonymousToPage("/Account/Register");
+
     });
 
 // ---------------------- REPO & SERVİSLER ----------------------
@@ -97,6 +99,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorization();
 
+
 // ---------------------- ANTIFORGERY ----------------------
 //builder.Services.AddAntiforgery(options =>
 //{
@@ -122,7 +125,6 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-
 // Güvenlik başlıkları
 //app.Use(async (context, next) =>
 //{
@@ -131,6 +133,7 @@ app.UseStaticFiles();
 //    context.Response.Headers["Content-Security-Policy"] = "default-src 'self'; script-src 'self'; style-src 'self'";
 //    await next();
 //});
+
 
 // ---------------------- ROUTING & SESSION ----------------------
 app.UseRouting();
@@ -148,11 +151,13 @@ app.MapControllers();
 app.UseSwagger();
 app.UseSwaggerUI();
 
+
 // ---------------------- DB Migration ----------------------
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     db.Database.Migrate();
 }
-  
-app.Run();                       // Uygulamayı başlatır
+
+
+app.Run();

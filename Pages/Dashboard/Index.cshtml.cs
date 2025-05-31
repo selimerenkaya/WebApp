@@ -3,15 +3,17 @@ using Microsoft.AspNetCore.Authorization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
+
 using System.Collections.Generic;
 using ChatForLife.Repositories;
 
 namespace ChatForLife.Pages.Dashboard
 {
-    [Authorize] // token olmadan eri�ilmesin
+    [Authorize] // token olmadan eriþilmesin
+
     public class IndexModel : PageModel
     {
-        public string CurrentUser { get; set; } = "Kullan�c�";
+        public string CurrentUser { get; set; } = "Kullanýcý";
 
         public List<GroupInfo> ActiveGroups { get; set; } = new();
         public List<UserInfo> SuggestedUsers { get; set; } = new();
@@ -27,11 +29,24 @@ namespace ChatForLife.Pages.Dashboard
         {
             var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier).Value);
 
-            // Giri� yapan kullan�c� ad�
-            var user = await _userRepository.GetByIdAsync(userId);
-            CurrentUser = user?.Username ?? "Kullan�c�";
+            // Burada Authentication ile gelen kullanýcý adý alýnýr
+            var username = User.Identity?.Name;
+            CurrentUser = username ?? "Bilinmeyen";
 
-            // Kullan�c�n�n aktif oldu�u gruplar
+            // Örnek veriler
+            ActiveGroups = new List<GroupInfo>
+            {
+                new() { Id = 1, Name = "Yazýlým Geliþtiriciler", Description = "Yazýlým dünyasý hakkýnda sohbet", MemberCount = 42, LastActivity = "2 saat önce" },
+                new() { Id = 2, Name = "Oyun Severler", Description = "Oyun tavsiyeleri ve sohbet", MemberCount = 28, LastActivity = "30 dakika önce" },
+                new() { Id = 3, Name = "Müzik Tutkunlarý", Description = "Müzik paylaþýmlarý", MemberCount = 15, LastActivity = "1 gün önce" }
+            };
+
+
+            // Giriþ yapan kullanýcý adý
+            var user = await _userRepository.GetByIdAsync(userId);
+            CurrentUser = user?.Username ?? "Kullanýcý";
+
+            // Kullanýcýnýn aktif olduðu gruplar
             var userGroups = await _groupRepository.GetUserGroupsAsync(userId);
             ActiveGroups = userGroups.Select(g => new GroupInfo
             {
@@ -42,7 +57,7 @@ namespace ChatForLife.Pages.Dashboard
                 //LastActivity = g.LastActivity?.ToString("g") ?? "Bilinmiyor"
             }).ToList();
 
-            // �nerilen kullan�c�lar: ayn� grupta olmayan ama sisteme kay�tl� di�er kullan�c�lar (�rnek �neri)
+            // Önerilen kullanýcýlar: ayný grupta olmayan ama sisteme kayýtlý diðer kullanýcýlar (örnek öneri)
             var allUsers = await _userRepository.GetAllAsync();
             SuggestedUsers = allUsers
                 .Where(u => u.Id != userId && !userGroups.SelectMany(g => g.Members).Any(m => m.UserId == u.Id))
