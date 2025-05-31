@@ -2,9 +2,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 using ChatForLife.Services;
+<<<<<<< HEAD
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+=======
+>>>>>>> developer
 
 namespace ChatForLife.Pages.Account
 {
@@ -51,8 +54,14 @@ namespace ChatForLife.Pages.Account
             }
 
             // Kullanýcý doðrulama
+<<<<<<< HEAD
             var user = await _userService.GetUserByUsernameAsync(Username);
             if (user == null || !await _userService.AuthenticateAsync(Username, Password))
+=======
+            var isAuthenticated = await _userService.AuthenticateAsync(Username, Password);
+
+            if (!isAuthenticated)
+>>>>>>> developer
             {
                 if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
                 {
