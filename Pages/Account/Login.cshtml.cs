@@ -2,6 +2,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 using ChatForLife.Services;
+<<<<<<< HEAD
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+=======
+>>>>>>> developer
 
 namespace ChatForLife.Pages.Account
 {
@@ -36,7 +42,6 @@ namespace ChatForLife.Pages.Account
             {
                 if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
                 {
-                    // AJAX isteði için JSON dön
                     var errors = ModelState.Values
                         .SelectMany(v => v.Errors)
                         .Select(e => e.ErrorMessage)
@@ -49,9 +54,14 @@ namespace ChatForLife.Pages.Account
             }
 
             // Kullanýcý doðrulama
+<<<<<<< HEAD
+            var user = await _userService.GetUserByUsernameAsync(Username);
+            if (user == null || !await _userService.AuthenticateAsync(Username, Password))
+=======
             var isAuthenticated = await _userService.AuthenticateAsync(Username, Password);
 
             if (!isAuthenticated)
+>>>>>>> developer
             {
                 if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
                 {
@@ -66,7 +76,27 @@ namespace ChatForLife.Pages.Account
                 return Page();
             }
 
-            // Baþarýlý giriþ
+            // Kullanýcý claim bilgileri
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, user.Username),
+                new Claim("UserId", user.Id.ToString()),
+                new Claim(ClaimTypes.Email, user.Email ?? "")
+                // Eðer roller varsa ekleyebilirsin: new Claim(ClaimTypes.Role, user.Role)
+            };
+
+            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var principal = new ClaimsPrincipal(identity);
+
+            var authProperties = new AuthenticationProperties
+            {
+                IsPersistent = RememberMe,
+                ExpiresUtc = DateTime.UtcNow.AddHours(2),
+                AllowRefresh = true
+            };
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, authProperties);
+
             if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
             {
                 return new JsonResult(new { success = true });
