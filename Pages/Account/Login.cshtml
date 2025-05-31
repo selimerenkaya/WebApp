@@ -63,9 +63,14 @@
                         success: function (response) {
                             if (response.success) {
                                 
-                                window.location.href = "/Dashboard";
+                                window.location.href = "/Dashboard/Index";
                             } else {
-                                $('#validationSummary').html(response.error || "Giriş başarısız");
+                                // Hataları göster
+                                if (response.errors) {
+                                    $('#validationSummary').html(response.errors.join('<br>'));
+                                } else if (response.error) {
+                                    $('#validationSummary').html(response.error);
+                                }
                             }
                         },
                         error: function (xhr) {
