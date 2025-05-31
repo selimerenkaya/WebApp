@@ -1,5 +1,4 @@
-
-﻿using ChatForLife.Settings;
+using ChatForLife.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -53,14 +52,14 @@ builder.Services.AddSession(options =>
 });
 
 // GEÇİCİ OLARAK ASKIYA ALINDI - DÜZENLENECEK
-//builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-//    .AddCookie(options =>
-//    {
-//        options.LoginPath = "/Account/Login";              // Giriş yapılmamışsa buraya yönlendir
-//        options.AccessDeniedPath = "/Account/AccessDenied"; // Yetki yoksa yönlendir
-//        options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
-//        options.SlidingExpiration = true;                  // Süre uzatılır her istekte
-//    });
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Account/Login";              // Giriş yapılmamışsa buraya yönlendir
+        options.AccessDeniedPath = "/Account/AccessDenied"; // Yetki yoksa yönlendir
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+        options.SlidingExpiration = true;                  // Süre uzatılır her istekte
+    });
 
 // ---------------------- JWT Authentication ----------------------
 // JWT ayarları

@@ -36,9 +36,9 @@ namespace ChatForLife.Pages.Dashboard
             // Örnek veriler
             ActiveGroups = new List<GroupInfo>
             {
-                new() { Id = 1, Name = "Yazýlým Geliþtiriciler", Description = "Yazýlým dünyasý hakkýnda sohbet", MemberCount = 42, LastActivity = "2 saat önce" },
-                new() { Id = 2, Name = "Oyun Severler", Description = "Oyun tavsiyeleri ve sohbet", MemberCount = 28, LastActivity = "30 dakika önce" },
-                new() { Id = 3, Name = "Müzik Tutkunlarý", Description = "Müzik paylaþýmlarý", MemberCount = 15, LastActivity = "1 gün önce" }
+                new() { Id = 1, Name = "Yazýlým Geliþtiriciler", Description = "Yazýlým dünyasý hakkýnda sohbet", MemberCount = 42},
+                new() { Id = 2, Name = "Oyun Severler", Description = "Oyun tavsiyeleri ve sohbet", MemberCount = 28},
+                new() { Id = 3, Name = "Müzik Tutkunlarý", Description = "Müzik paylaþýmlarý", MemberCount = 15}
             };
 
 

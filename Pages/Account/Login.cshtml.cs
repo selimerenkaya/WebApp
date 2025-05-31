@@ -44,19 +44,18 @@ namespace ChatForLife.Pages.Account
         [BindProperty]
         public bool RememberMe { get; set; }
 
-        public async Task<IActionResult> OnPostAsync()
-        {
-
-
+        
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
 
-                    var errors = ModelState.Values
-                        .SelectMany(v => v.Errors)
-                        .Select(e => e.ErrorMessage)
-                        .ToList();
+                var errors = ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
+                return Page();
+            }
 
 
             // Kullanıcı doğrulama
@@ -76,14 +75,7 @@ namespace ChatForLife.Pages.Account
                 return Page();
             }
 
-            // Kullanıcı claim bilgileri
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, user.Username),
-                new Claim("UserId", user.Id.ToString()),
-                new Claim(ClaimTypes.Email, user.Email ?? "")
-                // Eğer roller varsa ekleyebilirsin: new Claim(ClaimTypes.Role, user.Role)
-            };
+            
             
             // 3. JWT claim'leri haz�rla
                 var claims = new[]
