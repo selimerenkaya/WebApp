@@ -1,42 +1,43 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System;
+using ChatForLife.Services;
 
 namespace ChatForLife.Pages.Account
 {
     public class RegisterModel : PageModel
     {
+        private readonly IUserService _userService;
+
+        public RegisterModel(IUserService userService)
+        {
+            _userService = userService;
+        }
 
         [BindProperty]
         public InputModel Input { get; set; }
 
         public class InputModel
         {
-            [BindProperty]
             [Required(ErrorMessage = "Kullanýcý adý zorunludur")]
             [StringLength(20, MinimumLength = 3, ErrorMessage = "Kullanýcý adý 3-20 karakter arasýnda olmalýdýr")]
             [Display(Name = "Kullanýcý Adý")]
             public string Username { get; set; }
 
-            [BindProperty]
             [Required(ErrorMessage = "E-posta zorunludur")]
             [EmailAddress(ErrorMessage = "Geçerli bir e-posta adresi girin")]
             [Display(Name = "E-posta")]
             public string Email { get; set; }
 
-            [BindProperty]
             [Required(ErrorMessage = "Ad soyad zorunludur")]
             [Display(Name = "Ad Soyad")]
             public string FullName { get; set; }
 
-            [BindProperty]
             [Required(ErrorMessage = "Doðum tarihi zorunludur")]
             [DataType(DataType.Date)]
             [Display(Name = "Doðum Tarihi")]
             public DateTime BirthDate { get; set; } = DateTime.Now.AddYears(-18);
 
-            [BindProperty]
             [Required(ErrorMessage = "Þifre zorunludur")]
             [DataType(DataType.Password)]
             [MinLength(6, ErrorMessage = "Þifre en az 6 karakter olmalýdýr")]
@@ -45,25 +46,21 @@ namespace ChatForLife.Pages.Account
             [Display(Name = "Þifre")]
             public string Password { get; set; }
 
-            [BindProperty]
             [Required(ErrorMessage = "Þifre tekrarý zorunludur")]
             [DataType(DataType.Password)]
             [Compare("Password", ErrorMessage = "Þifreler eþleþmiyor")]
             [Display(Name = "Þifre Tekrar")]
             public string ConfirmPassword { get; set; }
-
         }
-
-        
 
         public void OnGet()
         {
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
-            {   
+            {
                 if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
                 {
                     // AJAX isteði için JSON dön
@@ -77,17 +74,35 @@ namespace ChatForLife.Pages.Account
 
                 return Page();
             }
-            // FIX ME: Baþarýlý kayýt sonrasý veritabanýna kayýt iþlemi yapýlacak
-            // bilgilerin hangi formatta çekildiði yazýyor
-            // istenirse düzenlenip rahatça veritabanýna aktarýlabilir
 
-            // Kayýt iþlemi baþarýlý
-            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            try
             {
-                return new JsonResult(new { success = true });
-            }
+                await _userService.RegisterUserAsync(
+                    Input.Username,
+                    Input.Email,
+                    Input.Password,
+                    Input.FullName,
+                    Input.BirthDate);
 
-            return RedirectToPage("/Account/Login");
+                // Kayýt iþlemi baþarýlý
+                if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+                {
+                    return new JsonResult(new { success = true });
+                }
+
+                return RedirectToPage("/Account/Login");
+            }
+            catch (InvalidOperationException ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+
+                if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+                {
+                    return new JsonResult(new { success = false, errors = new List<string> { ex.Message } });
+                }
+
+                return Page();
+            }
         }
     }
 }

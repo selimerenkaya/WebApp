@@ -1,55 +1,84 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using ChatForLife.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ChatForLife.Pages.Chat
 {
     public class GroupModel : PageModel
     {
+        private readonly IGroupService _groupService;
+        private readonly IUserService _userService;
+
+        public GroupModel(IGroupService groupService, IUserService userService)
+        {
+            _groupService = groupService;
+            _userService = userService;
+        }
+
         public string GroupName { get; set; }
         public string GroupDescription { get; set; }
         public int MemberCount { get; set; }
         public List<GroupMember> Members { get; set; }
         public List<ChatMessage> Messages { get; set; }
 
-        // FIX ME: Varsayýlan deðer olarak 0 deðerini veriyorum ki veritabanýndan grup verileri çekilene kadar görselliði test edebileyim
-        // - Selim
-        public void OnGet(int groupId = 0)
+        public async Task<IActionResult> OnGetAsync(int groupId)
         {
-            // Örnek veriler tekrardan
-            GroupName = "Yazýlým Geliþtiriciler";
-            GroupDescription = "Profesyonel yazýlým geliþtiriciler için sohbet grubu";
-            MemberCount = 42;
-
-            Members = new List<GroupMember>
+            var group = await _groupService.GetGroupByIdAsync(groupId);
+            if (group == null)
             {
-                new GroupMember { Username = "selimeren", AvatarUrl = "https://randomuser.me/api/portraits/men/1.jpg" },
-                new GroupMember { Username = "ayse_yilmaz", AvatarUrl = "https://randomuser.me/api/portraits/women/1.jpg" },
-                new GroupMember { Username = "mehmet_demir", AvatarUrl = "https://randomuser.me/api/portraits/men/2.jpg" },
-                new GroupMember { Username = "fatih_can", AvatarUrl = "https://randomuser.me/api/portraits/men/3.jpg" }
-            };
+                return NotFound();
+            }
 
-            Messages = new List<ChatMessage>
+            GroupName = group.Name;
+            GroupDescription = group.Description;
+
+            // Grup üyelerini getir
+            var dbGroupMembers = await _groupService.GetGroupWithMembersAsync(groupId);
+            Members = new List<GroupMember>();
+            MemberCount = 0;
+
+            if (dbGroupMembers != null && dbGroupMembers.Members != null)
             {
-                new ChatMessage {
-                    SenderName = "selimeren",
-                    SenderAvatar = "https://randomuser.me/api/portraits/men/1.jpg",
-                    Content = "Merhaba arkadaþlar! Bugünkü toplantý saat kaçta?",
-                    Timestamp = DateTime.Now.AddMinutes(-30)
-                },
-                new ChatMessage {
-                    SenderName = "ayse_yilmaz",
-                    SenderAvatar = "https://randomuser.me/api/portraits/women/1.jpg",
-                    Content = "Toplantý 15:00'te olacak. Herkes hazýr mý?",
-                    Timestamp = DateTime.Now.AddMinutes(-25)
-                },
-                new ChatMessage {
-                    SenderName = "mehmet_demir",
-                    SenderAvatar = "https://randomuser.me/api/portraits/men/2.jpg",
-                    Content = "Ben hazýrým. Yeni proje hakkýnda konuþacaðýz deðil mi?",
-                    Timestamp = DateTime.Now.AddMinutes(-10)
+                MemberCount = dbGroupMembers.Members.Count;
+
+                foreach (var member in dbGroupMembers.Members)
+                {
+                    var user = await _userService.GetUserByIdAsync(member.UserId);
+                    if (user != null)
+                    {
+                        Members.Add(new GroupMember
+                        {
+                            Username = user.Username,
+                            AvatarUrl = user.ProfilePictureUrl ?? "https://randomuser.me/api/portraits/men/1.jpg"
+                        });
+                    }
                 }
-            };
+            }
+
+            // Grup mesajlarýný getir
+            var dbMessages = await _groupService.GetGroupMessagesAsync(groupId);
+            Messages = new List<ChatMessage>();
+
+            foreach (var message in dbMessages)
+            {
+                var sender = await _userService.GetUserByIdAsync(message.SenderId);
+                if (sender != null)
+                {
+                    Messages.Add(new ChatMessage
+                    {
+                        SenderName = sender.Username,
+                        SenderAvatar = sender.ProfilePictureUrl ?? "https://randomuser.me/api/portraits/men/1.jpg",
+                        Content = message.Content,
+                        Timestamp = message.SentAt
+                    });
+                }
+            }
+
+            return Page();
         }
 
         public class GroupMember
@@ -58,8 +87,6 @@ namespace ChatForLife.Pages.Chat
             public string AvatarUrl { get; set; }
         }
 
-        // FIX ME: Avatar kýsmýný silebiliriz daha rahat olur belki
-        // - Selim
         public class ChatMessage
         {
             public string SenderName { get; set; }
@@ -67,8 +94,5 @@ namespace ChatForLife.Pages.Chat
             public string Content { get; set; }
             public DateTime Timestamp { get; set; }
         }
-
-        // FIX ME: Ajax çaðrýsý ile mesaj verisi gelince onlarýn kontrolü atanmasý kaydedilmesi vs.
-        // - Selim
     }
 }

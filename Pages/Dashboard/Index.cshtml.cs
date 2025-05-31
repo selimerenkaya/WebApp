@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Authorization;
 using System.Collections.Generic;
 
 namespace ChatForLife.Pages.Dashboard
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
-        // FIX ME: giriþ yapýlýrken kullanýcý verilerinin saklanýp burada kullanýlmasý saðlanacak
         public string CurrentUser { get; set; } = "Kullanýcý";
 
         public List<GroupInfo> ActiveGroups { get; set; } = new();
@@ -13,8 +14,11 @@ namespace ChatForLife.Pages.Dashboard
 
         public void OnGet()
         {
-            // FIX ME: örnek veriler oluþsun diye rastgele þeyler oluþturdum
-            // gerçek veriler veritabanýndan çekilecek ve belirli bir düzeyde gösterilecek top 3 gibisinden vs
+            // Burada Authentication ile gelen kullanýcý adý alýnýr
+            var username = User.Identity?.Name;
+            CurrentUser = username ?? "Bilinmeyen";
+
+            // Örnek veriler
             ActiveGroups = new List<GroupInfo>
             {
                 new() { Id = 1, Name = "Yazýlým Geliþtiriciler", Description = "Yazýlým dünyasý hakkýnda sohbet", MemberCount = 42, LastActivity = "2 saat önce" },

@@ -1,11 +1,22 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
+using ChatForLife.Services;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace ChatForLife.Pages.Account
 {
     public class LoginModel : PageModel
     {
+        private readonly IUserService _userService;
+
+        public LoginModel(IUserService userService)
+        {
+            _userService = userService;
+        }
+
         [BindProperty]
         [Required(ErrorMessage = "Kullanýcý adý zorunludur")]
         public string Username { get; set; }
@@ -22,13 +33,12 @@ namespace ChatForLife.Pages.Account
         {
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
                 if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
                 {
-                    // AJAX isteði için JSON dön
                     var errors = ModelState.Values
                         .SelectMany(v => v.Errors)
                         .Select(e => e.ErrorMessage)
@@ -40,10 +50,9 @@ namespace ChatForLife.Pages.Account
                 return Page();
             }
 
-            // FIX ME: Gerçek kimlik doðrulama mantýðýný buraya eklenecek
-            // Örnek kontrol olarak gerçekleþtirmek için bunu yazdým
-            // veritabaný baðlantýsý kurulunca onunla saðlanacak
-            if (Username != "demo" || Password != "demo123")
+            // Kullanýcý doðrulama
+            var user = await _userService.GetUserByUsernameAsync(Username);
+            if (user == null || !await _userService.AuthenticateAsync(Username, Password))
             {
                 if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
                 {
@@ -58,7 +67,27 @@ namespace ChatForLife.Pages.Account
                 return Page();
             }
 
-            // Baþarýlý giriþ
+            // Kullanýcý claim bilgileri
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, user.Username),
+                new Claim("UserId", user.Id.ToString()),
+                new Claim(ClaimTypes.Email, user.Email ?? "")
+                // Eðer roller varsa ekleyebilirsin: new Claim(ClaimTypes.Role, user.Role)
+            };
+
+            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var principal = new ClaimsPrincipal(identity);
+
+            var authProperties = new AuthenticationProperties
+            {
+                IsPersistent = RememberMe,
+                ExpiresUtc = DateTime.UtcNow.AddHours(2),
+                AllowRefresh = true
+            };
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, authProperties);
+
             if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
             {
                 return new JsonResult(new { success = true });
