@@ -2,12 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 using ChatForLife.Services;
-<<<<<<< HEAD
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-=======
->>>>>>> developer
 
 namespace ChatForLife.Pages.Account
 {
@@ -21,11 +18,11 @@ namespace ChatForLife.Pages.Account
         }
 
         [BindProperty]
-        [Required(ErrorMessage = "Kullanýcý adý zorunludur")]
+        [Required(ErrorMessage = "KullanÄ±cÄ± adÄ± zorunludur")]
         public string Username { get; set; }
 
         [BindProperty]
-        [Required(ErrorMessage = "Þifre zorunludur")]
+        [Required(ErrorMessage = "Åžifre zorunludur")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
@@ -53,36 +50,30 @@ namespace ChatForLife.Pages.Account
                 return Page();
             }
 
-            // Kullanýcý doðrulama
-<<<<<<< HEAD
+            // KullanÄ±cÄ± doÄŸrulama
             var user = await _userService.GetUserByUsernameAsync(Username);
             if (user == null || !await _userService.AuthenticateAsync(Username, Password))
-=======
-            var isAuthenticated = await _userService.AuthenticateAsync(Username, Password);
-
-            if (!isAuthenticated)
->>>>>>> developer
             {
                 if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
                 {
                     return new JsonResult(new
                     {
                         success = false,
-                        error = "Kullanýcý adý veya þifre hatalý"
+                        error = "KullanÄ±cÄ± adÄ± veya ÅŸifre hatalÄ±"
                     });
                 }
 
-                ModelState.AddModelError(string.Empty, "Kullanýcý adý veya þifre hatalý");
+                ModelState.AddModelError(string.Empty, "KullanÄ±cÄ± adÄ± veya ÅŸifre hatalÄ±");
                 return Page();
             }
 
-            // Kullanýcý claim bilgileri
+            // KullanÄ±cÄ± claim bilgileri
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, user.Username),
                 new Claim("UserId", user.Id.ToString()),
                 new Claim(ClaimTypes.Email, user.Email ?? "")
-                // Eðer roller varsa ekleyebilirsin: new Claim(ClaimTypes.Role, user.Role)
+                // EÄŸer roller varsa ekleyebilirsin: new Claim(ClaimTypes.Role, user.Role)
             };
 
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
