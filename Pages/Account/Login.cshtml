@@ -62,7 +62,8 @@
                         data: $(this).serialize(),
                         success: function (response) {
                             if (response.success) {
-                                window.location.href = '/Dashboard/Index';
+                                
+                                window.location.href = "/Dashboard/Index";
                             } else {
                                 // Hataları göster
                                 if (response.errors) {

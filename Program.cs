@@ -1,9 +1,18 @@
+
+﻿using ChatForLife.Settings;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using ChatForLife.Models;
+using Microsoft.EntityFrameworkCore;
 using ChatForLife.Repositories;
+
 using ChatForLife.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+
 using Microsoft.Net.Http.Headers;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +31,7 @@ builder.Services.AddRazorPages()
         options.Conventions.AuthorizeFolder("/Chat"); // Tüm Chat klasörü koruma altında
         options.Conventions.AllowAnonymousToPage("/Account/Login");
         options.Conventions.AllowAnonymousToPage("/Account/Register");
+
     });
 
 // ---------------------- REPO & SERVİSLER ----------------------
@@ -42,14 +52,53 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
+// GEÇİCİ OLARAK ASKIYA ALINDI - DÜZENLENECEK
+//builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+//    .AddCookie(options =>
+//    {
+//        options.LoginPath = "/Account/Login";              // Giriş yapılmamışsa buraya yönlendir
+//        options.AccessDeniedPath = "/Account/AccessDenied"; // Yetki yoksa yönlendir
+//        options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+//        options.SlidingExpiration = true;                  // Süre uzatılır her istekte
+//    });
+
+// ---------------------- JWT Authentication ----------------------
+// JWT ayarları
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
+var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<JwtSettings>();
+builder.Services.AddScoped<IGroupRepository, GroupRepository>();
+builder.Services.AddScoped<IGroupMessageRepository, GroupMessageRepository>();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
     {
-        options.LoginPath = "/Account/Login";              // Giriş yapılmamışsa buraya yönlendir
-        options.AccessDeniedPath = "/Account/AccessDenied"; // Yetki yoksa yönlendir
-        options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
-        options.SlidingExpiration = true;                  // Süre uzatılır her istekte
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = jwtSettings.Issuer,
+            ValidAudience = jwtSettings.Audience,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key))
+        };
+
+        // TOKEN'I COOKIE'DEN OKU
+        options.Events = new JwtBearerEvents
+        {
+            OnMessageReceived = context =>
+            {
+                var token = context.Request.Cookies["access_token"];
+                if (!string.IsNullOrEmpty(token))
+                {
+                    context.Token = token;
+                }
+                return Task.CompletedTask;
+            }
+        };
     });
+
+builder.Services.AddAuthorization();
+
 
 // ---------------------- ANTIFORGERY ----------------------
 //builder.Services.AddAntiforgery(options =>
@@ -85,12 +134,14 @@ app.UseStaticFiles();
 //    await next();
 //});
 
+
 // ---------------------- ROUTING & SESSION ----------------------
 app.UseRouting();
 
 app.UseSession();            // ✅ Session Middleware
-app.UseAuthentication();     // ✅ Cookie Authentication
+app.UseAuthentication(); // JWT kontrolü burada başlar
 app.UseAuthorization();      // Yetki kontrolü
+
 
 // ---------------------- RAZOR & API ----------------------
 app.MapRazorPages();
@@ -100,11 +151,13 @@ app.MapControllers();
 app.UseSwagger();
 app.UseSwaggerUI();
 
+
 // ---------------------- DB Migration ----------------------
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     db.Database.Migrate();
 }
+
 
 app.Run();

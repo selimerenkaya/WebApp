@@ -1,15 +1,20 @@
-using Microsoft.AspNetCore.Mvc.RazorPages;
+ï»¿using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Linq;
+using ChatForLife.Repositories;
+using ChatForLife.Models;
 using ChatForLife.Services;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace ChatForLife.Pages.Chat
 {
     public class GroupModel : PageModel
     {
+
         private readonly IGroupService _groupService;
         private readonly IUserService _userService;
 
@@ -17,13 +22,17 @@ namespace ChatForLife.Pages.Chat
         {
             _groupService = groupService;
             _userService = userService;
+
         }
 
         public string GroupName { get; set; }
         public string GroupDescription { get; set; }
         public int MemberCount { get; set; }
-        public List<GroupMember> Members { get; set; }
-        public List<ChatMessage> Messages { get; set; }
+        public List<GroupMemberInfo> Members { get; set; } = new();
+        public List<ChatMessage> Messages { get; set; } = new();
+
+        public bool IsAdmin { get; set; }
+
 
         public async Task<IActionResult> OnGetAsync(int groupId)
         {
@@ -32,11 +41,14 @@ namespace ChatForLife.Pages.Chat
             {
                 return NotFound();
             }
-
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            // â¤ YÃ¶netici kontrolÃ¼
+            IsAdmin = await _groupRepository.IsUserGroupAdminAsync(groupId, currentUserId);
+            
             GroupName = group.Name;
             GroupDescription = group.Description;
 
-            // Grup �yelerini getir
+            // Grup üyelerini getir
             var dbGroupMembers = await _groupService.GetGroupWithMembersAsync(groupId);
             Members = new List<GroupMember>();
             MemberCount = 0;
@@ -59,7 +71,7 @@ namespace ChatForLife.Pages.Chat
                 }
             }
 
-            // Grup mesajlar�n� getir
+            // Grup mesajlarýný getir
             var dbMessages = await _groupService.GetGroupMessagesAsync(groupId);
             Messages = new List<ChatMessage>();
 
@@ -81,7 +93,7 @@ namespace ChatForLife.Pages.Chat
             return Page();
         }
 
-        public class GroupMember
+        public class GroupMemberInfo
         {
             public string Username { get; set; }
             public string AvatarUrl { get; set; }

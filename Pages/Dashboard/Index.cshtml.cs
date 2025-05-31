@@ -1,40 +1,76 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Authorization;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using Microsoft.AspNetCore.Http;
+
 using System.Collections.Generic;
+using ChatForLife.Repositories;
 
 namespace ChatForLife.Pages.Dashboard
 {
-    [Authorize]
+    [Authorize] // token olmadan eriÃ¾ilmesin
+
     public class IndexModel : PageModel
     {
-        public string CurrentUser { get; set; } = "Kullanýcý";
+        public string CurrentUser { get; set; } = "KullanÃ½cÃ½";
 
         public List<GroupInfo> ActiveGroups { get; set; } = new();
         public List<UserInfo> SuggestedUsers { get; set; } = new();
+        private readonly IGroupRepository _groupRepository;
+        private readonly IUserRepository _userRepository;
 
-        public void OnGet()
+        public IndexModel(IGroupRepository groupRepository, IUserRepository userRepository)
         {
-            // Burada Authentication ile gelen kullanýcý adý alýnýr
+            _groupRepository = groupRepository;
+            _userRepository = userRepository;
+        }
+        public async Task OnGetAsync()
+        {
+            var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier).Value);
+
+            // Burada Authentication ile gelen kullanÃ½cÃ½ adÃ½ alÃ½nÃ½r
             var username = User.Identity?.Name;
             CurrentUser = username ?? "Bilinmeyen";
 
-            // Örnek veriler
+            // Ã–rnek veriler
             ActiveGroups = new List<GroupInfo>
             {
-                new() { Id = 1, Name = "Yazýlým Geliþtiriciler", Description = "Yazýlým dünyasý hakkýnda sohbet", MemberCount = 42, LastActivity = "2 saat önce" },
-                new() { Id = 2, Name = "Oyun Severler", Description = "Oyun tavsiyeleri ve sohbet", MemberCount = 28, LastActivity = "30 dakika önce" },
-                new() { Id = 3, Name = "Müzik Tutkunlarý", Description = "Müzik paylaþýmlarý", MemberCount = 15, LastActivity = "1 gün önce" }
+                new() { Id = 1, Name = "YazÃ½lÃ½m GeliÃ¾tiriciler", Description = "YazÃ½lÃ½m dÃ¼nyasÃ½ hakkÃ½nda sohbet", MemberCount = 42, LastActivity = "2 saat Ã¶nce" },
+                new() { Id = 2, Name = "Oyun Severler", Description = "Oyun tavsiyeleri ve sohbet", MemberCount = 28, LastActivity = "30 dakika Ã¶nce" },
+                new() { Id = 3, Name = "MÃ¼zik TutkunlarÃ½", Description = "MÃ¼zik paylaÃ¾Ã½mlarÃ½", MemberCount = 15, LastActivity = "1 gÃ¼n Ã¶nce" }
             };
 
-            SuggestedUsers = new List<UserInfo>
+
+            // GiriÃ¾ yapan kullanÃ½cÃ½ adÃ½
+            var user = await _userRepository.GetByIdAsync(userId);
+            CurrentUser = user?.Username ?? "KullanÃ½cÃ½";
+
+            // KullanÃ½cÃ½nÃ½n aktif olduÃ°u gruplar
+            var userGroups = await _groupRepository.GetUserGroupsAsync(userId);
+            ActiveGroups = userGroups.Select(g => new GroupInfo
             {
-                new() { Id = 1, Username = "ahmetkaya", Initials = "AK", CommonGroups = 2 },
-                new() { Id = 2, Username = "mehmetdemir", Initials = "MD", CommonGroups = 1 },
-                new() { Id = 3, Username = "ayse_yilmaz", Initials = "AY", CommonGroups = 3 },
-                new() { Id = 4, Username = "fatih_can", Initials = "FC", CommonGroups = 1 },
-                new() { Id = 5, Username = "zeynep_", Initials = "Z", CommonGroups = 2 }
-            };
+                Id = g.Id,
+                Name = g.Name,
+                Description = g.Description,
+                MemberCount = g.Members.Count,
+                //LastActivity = g.LastActivity?.ToString("g") ?? "Bilinmiyor"
+            }).ToList();
+
+            // Ã–nerilen kullanÃ½cÃ½lar: aynÃ½ grupta olmayan ama sisteme kayÃ½tlÃ½ diÃ°er kullanÃ½cÃ½lar (Ã¶rnek Ã¶neri)
+            var allUsers = await _userRepository.GetAllAsync();
+            SuggestedUsers = allUsers
+                .Where(u => u.Id != userId && !userGroups.SelectMany(g => g.Members).Any(m => m.UserId == u.Id))
+                .Take(5)
+                .Select(u => new UserInfo
+                {
+                    Id = u.Id,
+                    Username = u.Username,
+                    Initials = string.Concat(u.Username.Take(2)).ToUpper(),
+                    CommonGroups = 0
+                }).ToList();
         }
+
 
         public class GroupInfo
         {
@@ -42,7 +78,7 @@ namespace ChatForLife.Pages.Dashboard
             public string Name { get; set; }
             public string Description { get; set; }
             public int MemberCount { get; set; }
-            public string LastActivity { get; set; }
+            
         }
 
         public class UserInfo

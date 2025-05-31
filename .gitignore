@@ -116,3 +116,11 @@ tools/
 # ReSharper
 _ReSharper.*
 *.ReSharper.*
+
+
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.db
