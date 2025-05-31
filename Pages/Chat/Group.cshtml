@@ -44,30 +44,7 @@
                     </div>
                 }
             </div>
-        </div>
-
-        @if (Model.IsAdmin)
-        {
-            <div class="mb-6">
-                <h3 class="font-semibold mb-2 flex items-center text-yellow-400">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M5 13l4 4L19 7" />
-                    </svg>
-                    Yönetim
-                </h3>
-                <div class="space-y-2">
-                    <a href="/Chat/EditGroup?groupId=@Request.Query["groupId"]"
-                       class="block bg-yellow-600 hover:bg-yellow-700 text-white py-2 px-4 rounded-lg text-sm text-center">
-                        Grubu Düzenle
-                    </a>
-                    <a href="/Chat/ManageMembers?groupId=@Request.Query["groupId"]"
-                       class="block bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg text-sm text-center">
-                        Üyeleri Yönet
-                    </a>
-                </div>
-            </div>
-        }
+        </div
 
         <div class="mt-auto">
             <button class="w-full bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg flex items-center justify-center">
