@@ -1,0 +1,19 @@
+@{
+    ViewData["Title"] = "Dosya Yükle";
+}
+
+<h2>Dosya Yükle</h2>
+
+@if (TempData["Error"] != null)
+{
+    <div style="color:red">@TempData["Error"]</div>
+}
+@if (TempData["Success"] != null)
+{
+    <div style="color:green">@TempData["Success"]</div>
+}
+
+<form asp-controller="FileUpload" asp-action="Upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="pdfFile" />
+    <button type="submit">Yükle</button>
+</form>

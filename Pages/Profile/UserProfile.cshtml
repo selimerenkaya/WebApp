@@ -37,20 +37,28 @@
             <!-- FIX ME: Henüz işlevleri sağlanmadı daha sonra yapılması için konuldu, uykum vardı yarına bıraktım proje az daha gelişsin diye 
                 - Selim
             -->
-            <div class="flex gap-2">
-                <a asp-page="/Profile/Edit" class="btn-secondary px-4 py-2 rounded-lg flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-                    </svg>
-                    Düzenle
-                </a>
-                <a href="#" class="btn-primary px-4 py-2 rounded-lg flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6z" />
-                    </svg>
-                    Paylaş
-                </a>
-            </div>
+         <!-- Aksiyon Butonları -->
+<div class="flex flex-col gap-2">
+    <a asp-page="/Profile/Edit" class="btn-secondary px-4 py-2 rounded-lg flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+        </svg>
+        Düzenle
+    </a>
+    <a href="#" class="btn-primary px-4 py-2 rounded-lg flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6z" />
+        </svg>
+        Paylaş
+    </a>
+<form asp-controller="FileUpload" asp-action="Upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="pdfFile" />
+    <button type="submit" class="btn-success">Dosya Yükle</button>
+</form>
+
+
+</div>
+
         </div>
     </div>
 
