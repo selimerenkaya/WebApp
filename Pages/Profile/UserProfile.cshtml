@@ -30,6 +30,20 @@
                 <div class="flex flex-wrap gap-2 justify-center md:justify-start">
                     <span class="bg-white bg-opacity-10 px-3 py-1 rounded-full text-sm">🎂 @Model.Profile.BirthDate.ToString("dd/MM/yyyy")</span>
                     <span class="bg-white bg-opacity-10 px-3 py-1 rounded-full text-sm">👥 @Model.Profile.FriendCount arkadaş</span>
+                @if (Model.Profile.Gender == "Kadın")
+        {
+            <span class="bg-pink-500 text-white px-3 py-1 rounded-full text-sm">👩 Kadın</span>
+        }
+        else if (Model.Profile.Gender == "Erkek")
+        {
+            <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm">👨 Erkek</span>
+        }
+        else
+        {
+            <span class="bg-gray-500 text-white px-3 py-1 rounded-full text-sm">❓ Bilinmiyor</span>
+        }
+
+
                 </div>
             </div>
 
@@ -37,7 +51,7 @@
             <!-- FIX ME: Henüz işlevleri sağlanmadı daha sonra yapılması için konuldu, uykum vardı yarına bıraktım proje az daha gelişsin diye 
                 - Selim
             -->
-         <!-- Aksiyon Butonları -->
+        <!-- Aksiyon Butonları -->
 <div class="flex flex-col gap-2">
     <a asp-page="/Profile/Edit" class="btn-secondary px-4 py-2 rounded-lg flex items-center gap-2">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
