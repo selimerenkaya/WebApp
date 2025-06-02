@@ -43,6 +43,25 @@ namespace ChatForLife.Pages.Profile
 
             // Kullanıcı aktivitelerini getir
             var userActivities = await _userService.GetUserActivitiesAsync(userId);
+                // 1. Profil resmi URL’sini al
+                var imageUrl = user.ProfilePictureUrl ?? "https://randomuser.me/api/portraits/men/1.jpg";
+
+
+                string tempFile = Path.Combine(Path.GetTempPath(), $"pp_{Guid.NewGuid()}.jpg");
+                using (var httpClient = new HttpClient())
+                {
+                    var imageBytes = await httpClient.GetByteArrayAsync(imageUrl);
+                    await System.IO.File.WriteAllBytesAsync(tempFile, imageBytes);
+                }
+
+                //AI ile tahmin
+                var modelPath = Path.Combine("wwwroot", "models", "model_quantized.onnx");
+                var predictor = new GenderPredictor(modelPath);
+                string gender = predictor.PredictGender(tempFile); // 👈 BURADA 'gender' DEĞİŞKENİ TANIMLANIYOR
+
+
+                System.IO.File.Delete(tempFile);
+
 
             Profile = new ProfileViewModel
             {
@@ -78,7 +97,8 @@ namespace ChatForLife.Pages.Profile
                 FriendCount = 0,
                 ActiveGroups = 0,
                 TotalMessages = 0,
-                JoinDate = DateTime.Now.AddYears(-1)
+                JoinDate = DateTime.Now.AddYears(-1),
+                Gender = "Bilinmiyor"
             };
         }
 
@@ -133,6 +153,7 @@ namespace ChatForLife.Pages.Profile
             public int ActiveGroups { get; set; }
             public int TotalMessages { get; set; }
             public DateTime JoinDate { get; set; }
+            public string Gender { get; set; }
         }
 
         public class Activity
