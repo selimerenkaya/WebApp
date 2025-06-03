@@ -87,7 +87,7 @@ namespace ChatForLife.Pages.Chat
                 {
                     foreach (var memberId in SelectedMembers)
                     {
-                        await _groupService.AddMemberToGroupAsync(group.Id, memberId);
+                        await _groupService.AddMemberToGroupAsync(group.Id, memberId, currentUserId);
                     }
                 }
 

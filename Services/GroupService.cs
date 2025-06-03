@@ -58,7 +58,7 @@ namespace ChatForLife.Services
             await _groupRepository.SaveChangesAsync();
 
             // Grup oluşturan kullanıcıyı admin olarak ekle
-            await AddMemberToGroupAsync(group.Id, creatorUserId, true);
+            await AddMemberToGroupAsync(group.Id, creatorUserId, creatorUserId, true);
 
             // Grup oluşturma aktivitesi
             var activity = new Activity
@@ -97,8 +97,14 @@ namespace ChatForLife.Services
             return await _groupMessageRepository.GetGroupMessagesAsync(groupId);
         }
 
-        public async Task AddMemberToGroupAsync(int groupId, int userId, bool isAdmin = false)
+        public async Task AddMemberToGroupAsync(int groupId, int userId, int currentUserId, bool isAdmin = false)
         {
+            // Admin yetkisi kontrolü
+            if (!await IsUserGroupAdminAsync(groupId, currentUserId))
+            {
+                throw new UnauthorizedAccessException("Yalnızca admin kullanıcılar gruba üye ekleyebilir.");
+            }
+
             var groupMember = new GroupMember
             {
                 GroupId = groupId,
@@ -110,7 +116,6 @@ namespace ChatForLife.Services
             await _groupMemberRepository.AddAsync(groupMember);
             await _groupMemberRepository.SaveChangesAsync();
 
-            // Gruba katılma aktivitesi
             var group = await _groupRepository.GetByIdAsync(groupId);
             var activity = new Activity
             {
@@ -123,10 +128,16 @@ namespace ChatForLife.Services
 
             await _activityRepository.AddAsync(activity);
             await _activityRepository.SaveChangesAsync();
-
         }
-        public async Task RemoveMemberFromGroupAsync(int groupId, int userId)
+
+        public async Task RemoveMemberFromGroupAsync(int groupId, int userId, int currentUserId)
         {
+            // Admin yetkisi kontrolü
+            if (!await IsUserGroupAdminAsync(groupId, currentUserId))
+            {
+                throw new UnauthorizedAccessException("Yalnızca admin kullanıcılar gruptan üye çıkarabilir.");
+            }
+
             var groupMembers = await _groupMemberRepository.FindAsync(
                 gm => gm.GroupId == groupId && gm.UserId == userId);
 
@@ -137,7 +148,6 @@ namespace ChatForLife.Services
 
             await _groupMemberRepository.SaveChangesAsync();
 
-               // Gruptan ayrılma aktivitesi
             var group = await _groupRepository.GetByIdAsync(groupId);
             var activity = new Activity
             {
@@ -151,6 +161,7 @@ namespace ChatForLife.Services
             await _activityRepository.AddAsync(activity);
             await _activityRepository.SaveChangesAsync();
         }
+
 
         public async Task<bool> IsUserInGroupAsync(int groupId, int userId)
         {
