@@ -14,6 +14,8 @@ WORKDIR /src
 COPY ["ChatForLife.csproj", "./"]
 RUN dotnet restore "ChatForLife.csproj"
 COPY . .
+RUN dotnet add package Microsoft.ML.OnnxRuntime
+RUN dotnet add package SixLabors.ImageSharp
 RUN dotnet build "ChatForLife.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
@@ -23,4 +25,5 @@ RUN dotnet publish "ChatForLife.csproj" -c $BUILD_CONFIGURATION -o /app/publish 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+
 ENTRYPOINT ["dotnet", "ChatForLife.dll"]
