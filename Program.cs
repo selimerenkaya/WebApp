@@ -114,11 +114,16 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // ---------------------- ENV ----------------------
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Error");
-    app.UseHsts();
+    app.UseDeveloperExceptionPage();  //
 }
+else
+{
+    app.UseExceptionHandler("/Error"); // 
+    app.UseHsts();                     // HSTS kullanımı
+}
+
 
 // ---------------------- ORTAK MIDDLEWARE ----------------------
 app.UseHttpsRedirection();

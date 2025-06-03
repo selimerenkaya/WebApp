@@ -16,13 +16,13 @@ public class GenderPredictor
     public string PredictGender(string imagePath)
     {
         using var image = Image.Load<Rgb24>(imagePath);
-        image.Mutate(x => x.Resize(64, 64));
+        image.Mutate(x => x.Resize(224, 224)); // ⚠️ Model 224x224 bekliyorsa!
 
-        var input = new DenseTensor<float>(new[] { 1, 3, 64, 64 });
+        var input = new DenseTensor<float>(new[] { 1, 3, 224, 224 });
 
-        for (int y = 0; y < 64; y++)
+        for (int y = 0; y < 224; y++)
         {
-            for (int x = 0; x < 64; x++)
+            for (int x = 0; x < 224; x++)
             {
                 var pixel = image[x, y];
                 input[0, 0, y, x] = pixel.R / 255f;
@@ -33,7 +33,7 @@ public class GenderPredictor
 
         var inputs = new List<NamedOnnxValue>
         {
-            NamedOnnxValue.CreateFromTensor("input", input)
+            NamedOnnxValue.CreateFromTensor("pixel_values", input)
         };
 
         using var results = _session.Run(inputs);

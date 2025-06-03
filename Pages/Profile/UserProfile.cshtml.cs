@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using ChatForLife.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.ML.OnnxRuntime;
 
 namespace ChatForLife.Pages.Profile
 {
@@ -44,18 +46,25 @@ namespace ChatForLife.Pages.Profile
             // Kullanıcı aktivitelerini getir
             var userActivities = await _userService.GetUserActivitiesAsync(userId);
                 // 1. Profil resmi URL’sini al
-                var imageUrl = user.ProfilePictureUrl ?? "https://randomuser.me/api/portraits/men/1.jpg";
+                var imageUrl = user.ProfilePictureUrl;
 
+                if (string.IsNullOrWhiteSpace(imageUrl) || !Uri.IsWellFormedUriString(imageUrl, UriKind.Absolute))
+                {
+                    imageUrl = "https://randomuser.me/api/portraits/men/1.jpg"; // fallback URL
+                }
 
                 string tempFile = Path.Combine(Path.GetTempPath(), $"pp_{Guid.NewGuid()}.jpg");
+
                 using (var httpClient = new HttpClient())
                 {
                     var imageBytes = await httpClient.GetByteArrayAsync(imageUrl);
                     await System.IO.File.WriteAllBytesAsync(tempFile, imageBytes);
                 }
 
+
                 //AI ile tahmin
                 var modelPath = Path.Combine("wwwroot", "models", "model_quantized.onnx");
+
                 var predictor = new GenderPredictor(modelPath);
                 string gender = predictor.PredictGender(tempFile); // 👈 BURADA 'gender' DEĞİŞKENİ TANIMLANIYOR
 
@@ -73,7 +82,8 @@ namespace ChatForLife.Pages.Profile
                 FriendCount = 0, // Gerçek uygulamada hesaplanacak
                 ActiveGroups = activeGroups,
                 TotalMessages = 0, // Gerçek uygulamada hesaplanacak
-                JoinDate = user.RegistrationDate
+                JoinDate = user.RegistrationDate,
+                Gender = gender
             };
 
             // Aktiviteleri dönüştür
