@@ -49,6 +49,8 @@ builder.Services.AddSession(options =>
     options.IdleTimeout = TimeSpan.FromMinutes(30); // Oturum süresi
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always; 
+    options.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict;          
 });
 
 // GEÇİCİ OLARAK ASKIYA ALINDI - DÜZENLENECEK
@@ -59,6 +61,9 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.AccessDeniedPath = "/Account/AccessDenied"; // Yetki yoksa yönlendir
         options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
         options.SlidingExpiration = true;                  // Süre uzatılır her istekte
+        options.Cookie.SecurePolicy = CookieSecurePolicy.Always; //  HTTPS için
+        options.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict;
+          //  CSRF önlemi
     });
 
 // ---------------------- JWT Authentication ----------------------
@@ -99,12 +104,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddAuthorization();
 
 
-// ---------------------- ANTIFORGERY ----------------------
-//builder.Services.AddAntiforgery(options =>
-//{
-//    options.Cookie.HttpOnly = true;
-//    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-//});
+
 
 // ---------------------- SWAGGER ----------------------
 builder.Services.AddControllers();
@@ -123,15 +123,8 @@ if (!app.Environment.IsDevelopment())
 // ---------------------- ORTAK MIDDLEWARE ----------------------
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseStaticFiles();
 
-// Güvenlik başlıkları
-//app.Use(async (context, next) =>
-//{
-//    context.Response.Headers["X-Frame-Options"] = "DENY";
-//    context.Response.Headers["X-XSS-Protection"] = "1; mode=block";
-//    context.Response.Headers["Content-Security-Policy"] = "default-src 'self'; script-src 'self'; style-src 'self'";
-//    await next();
-//});
 
 
 // ---------------------- ROUTING & SESSION ----------------------
