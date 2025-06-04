@@ -36,7 +36,7 @@ namespace ChatForLife.Pages.Chat
             if (group == null) return NotFound();
 
             var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier).Value);
-            bool isAdmin = false;
+            bool isAdmin = await _groupService.IsUserGroupAdminAsync(groupId, userId);
 
             if (!isAdmin)
             {
