@@ -36,7 +36,7 @@ namespace ChatForLife.Pages.Chat
             if (group == null) return NotFound();
 
             var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier).Value);
-            bool isAdmin = await _groupService.IsUserGroupAdminAsync(groupId, userId);
+            bool isAdmin = false;
 
             if (!isAdmin)
             {
@@ -100,7 +100,7 @@ namespace ChatForLife.Pages.Chat
                 return Page();
             }
 
-            await _groupService.(GroupId, GroupName, GroupDescription);
+            await _groupService.UpdateGroupAsync(GroupId, GroupName, GroupDescription, userId);
             return RedirectToPage("/Chat/Group", new { groupId = GroupId }); // Grup sayfasýna geri yönlendir
         }
 

@@ -29,17 +29,17 @@
         </div>
 
         @* Adminse Grubu Düzenle butonunu göster *@
-@if (Model.IsAdmin)
-{
-    <div class="mb-4">
-        <a href="/Chat/EditGroup/@Model.GroupId" class="w-full bg-yellow-500 hover:bg-yellow-600 text-black py-2 px-4 rounded-lg flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828zM5 13v2h2l7-7-2-2L5 13z" />
-            </svg>
-            Grubu Düzenle
-        </a>
-    </div>
-}
+        @if (Model.IsAdmin)
+        {
+            <div class="mb-4">
+                <a href="" class="w-full bg-yellow-500 hover:bg-yellow-600 text-black py-2 px-4 rounded-lg flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828zM5 13v2h2l7-7-2-2L5 13z" />
+                    </svg>
+                    Grubu Düzenle
+                </a>
+            </div>
+        }
 
 
 
@@ -59,7 +59,7 @@
                     </div>
                 }
             </div>
-        </div
+        </div>
 
         <div class="mt-auto">
             <button class="w-full bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg flex items-center justify-center">
@@ -70,24 +70,6 @@
             </button>
         </div>
 
-        @if (Model.IsAdmin)
-        {   
-            <div class="mt-4 space-y-2 border-t border-gray-700 pt-4">
-                <h3 class="text-sm text-gray-400 uppercase tracking-wider">Admin Araçları</h3>
-
-                <a href=""
-                   class="block w-full text-left bg-yellow-600 hover:bg-yellow-700 text-white py-2 px-4 rounded-lg">
-                    Grubu Düzenle
-                </a>
-
-                <form method="post" onsubmit="return confirm('Bu grubu silmek istediğinize emin misiniz?');">
-                    <button type="submit"
-                            class="w-full bg-red-700 hover:bg-red-800 text-white py-2 px-4 rounded-lg">
-                        Grubu Sil
-                    </button>
-                </form>
-            </div>
-        }
     </div>
 
     <!-- Sohbet Alanı -->
