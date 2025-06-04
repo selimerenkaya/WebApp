@@ -12,6 +12,8 @@ namespace ChatForLife.Pages.Chat
     {
         private readonly IGroupService _groupService;
         private readonly IUserService _userService;
+        private bool _isAdmin = true;
+        public bool IsAdmin => _isAdmin;
 
         public GroupModel(IGroupService groupService, IUserService userService)
         {
@@ -32,6 +34,10 @@ namespace ChatForLife.Pages.Chat
             {
                 return NotFound();
             }
+            // Kullanıcının admin olup olmadığını kontrol et
+            var currentUserId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier).Value);
+            // Benzer bir şey ekelnebilir
+            //_isAdmin = await _groupService.IsUserAdminAsync(groupId, currentUserId);
 
             GroupName = group.Name;
             GroupDescription = group.Description;
