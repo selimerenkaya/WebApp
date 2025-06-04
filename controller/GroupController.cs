@@ -52,6 +52,9 @@ namespace ChatForLife.Controllers
             return Ok(group);
         }
 
+        
+
+
         // Tüm grupları getir
         [HttpGet]
         public IActionResult GetGroups()

@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc;
+using ChatForLife.Services;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
-using ChatForLife.Services;
-using Microsoft.AspNetCore.Mvc;
 
 namespace ChatForLife.Pages.Chat
 {
@@ -24,11 +24,16 @@ namespace ChatForLife.Pages.Chat
         public string GroupName { get; set; }
         public string GroupDescription { get; set; }
         public int MemberCount { get; set; }
-        public List<GroupMember> Members { get; set; }
-        public List<ChatMessage> Messages { get; set; }
+        public bool IsAdmin { get; set; }
+        public int GroupId { get; set; }
+
+        public List<GroupMember> Members { get; set; } = new();
+        public List<ChatMessage> Messages { get; set; } = new();
 
         public async Task<IActionResult> OnGetAsync(int groupId)
         {
+            GroupId = groupId;
+
             var group = await _groupService.GetGroupByIdAsync(groupId);
             if (group == null)
             {
@@ -39,15 +44,12 @@ namespace ChatForLife.Pages.Chat
             // Benzer bir şey ekelnebilir
             //_isAdmin = await _groupService.IsUserAdminAsync(groupId, currentUserId);
 
+
             GroupName = group.Name;
             GroupDescription = group.Description;
 
-            // Grup �yelerini getir
             var dbGroupMembers = await _groupService.GetGroupWithMembersAsync(groupId);
-            Members = new List<GroupMember>();
-            MemberCount = 0;
-
-            if (dbGroupMembers != null && dbGroupMembers.Members != null)
+            if (dbGroupMembers?.Members != null)
             {
                 MemberCount = dbGroupMembers.Members.Count;
 
@@ -65,24 +67,24 @@ namespace ChatForLife.Pages.Chat
                 }
             }
 
-            // Grup mesajlar�n� getir
             var dbMessages = await _groupService.GetGroupMessagesAsync(groupId);
-            Messages = new List<ChatMessage>();
-
-            foreach (var message in dbMessages)
+            foreach (var msg in dbMessages)
             {
-                var sender = await _userService.GetUserByIdAsync(message.SenderId);
+                var sender = await _userService.GetUserByIdAsync(msg.SenderId);
                 if (sender != null)
                 {
                     Messages.Add(new ChatMessage
                     {
                         SenderName = sender.Username,
                         SenderAvatar = sender.ProfilePictureUrl ?? "https://randomuser.me/api/portraits/men/1.jpg",
-                        Content = message.Content,
-                        Timestamp = message.SentAt
+                        Content = msg.Content,
+                        Timestamp = msg.SentAt
                     });
                 }
             }
+
+            var userId = int.Parse(User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier).Value);
+            IsAdmin = await _groupService.IsUserGroupAdminAsync(groupId,userId);
 
             return Page();
         }
