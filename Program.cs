@@ -109,7 +109,7 @@ builder.Services.AddAuthorization();
 // ---------------------- SWAGGER ----------------------
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.add
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
