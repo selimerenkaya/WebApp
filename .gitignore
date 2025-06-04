@@ -1,0 +1,126 @@
+## Visual Studio ve ASP.NET Core için Temel Yapı ##
+
+# Derleme çıktıları
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+x64/
+x86/
+
+# NuGet paketleri
+.nuget/
+*.nupkg
+NuGet.exe
+
+# VS kullanıcı ayarları
+*.user
+*.userprefs
+*.suo
+
+# Build sonuçları
+*.log
+*.vspscc
+*.vssscc
+.builds
+
+# Dosya sistem önbelleği
+Thumbs.db
+[Dd]esktop.ini
+
+# Visual Studio 2015/2017/2019/2022 özel dosyalar
+.vs/
+.vscode/
+.idea/
+
+# Rider IDE
+.idea/
+
+# Test sonuçları
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# Local development için ortam değişkenleri
+.env
+.env.local
+
+# Paket yöneticisi
+packages/
+
+# Node.js bağımlılıkları
+node_modules/
+jspm_packages/
+
+# Bower bağımlılıkları
+bower_components/
+
+# Output klasörü
+wwwroot/lib/
+wwwroot/dist/
+
+# Azure işlevleri
+bin/
+obj/
+App_Data/
+
+# SQL Server dosyaları
+*.mdf
+*.ldf
+
+# Entity Framework Core migrations
+Migrations/
+
+# Visual Studio Code
+.vscode/
+
+# Rider
+.idea/
+
+# User-specific files
+*.rsuser
+*.user
+*.userosscache
+*.sln.docstates
+
+# MacOS
+.DS_Store
+
+# Docker
+docker-compose.override.yml
+
+# Local History for Visual Studio
+.localhistory/
+
+# Backup folder
+_Backup/
+
+# Secrets
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+
+# Visual Studio 2022
+*.VC.db
+*.VC.VC.opendb
+
+# Rider
+*.sln.iml
+
+# Cake
+tools/
+
+# MSBuild
+*.csproj.user
+*.pubxml
+
+# ReSharper
+_ReSharper.*
+*.ReSharper.*
+
+
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.db

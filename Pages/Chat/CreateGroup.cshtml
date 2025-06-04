@@ -1,0 +1,75 @@
+﻿@page
+@model ChatForLife.Pages.Chat.CreateGroupModel
+@{
+    ViewData["Title"] = "Grup Oluştur";
+    Layout = "_Layout";
+}
+
+<div class="container mx-auto px-4 py-8 max-w-2xl">
+    <div class="bg-white bg-opacity-10 rounded-xl p-6 backdrop-blur-sm border border-white border-opacity-20">
+        <h1 class="text-2xl font-bold mb-6">Yeni Grup Oluştur</h1>
+
+        <form method="post" class="space-y-6" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+
+
+            <!-- Grup Adı -->
+            <div>
+                <label asp-for="gForm.Name" class="block text-sm font-medium mb-2"></label>
+                <input asp-for="gForm.Name"
+                       class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-10 border border-white border-opacity-20 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <span asp-validation-for="gForm.Name" class="text-red-400 text-xs"></span>
+            </div>
+
+            <!-- Grup Açıklaması -->
+            <div>
+                <label asp-for="gForm.Description" class="block text-sm font-medium mb-2"></label>
+                <textarea asp-for="gForm.Description" rows="4"
+                          class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-10 border border-white border-opacity-20 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                <span asp-validation-for="gForm.Description" class="text-red-400 text-xs"></span>
+            </div>
+
+            <!-- Gizlilik Ayarları -->
+            <div>
+                <label asp-for="gForm.Privacy" class="block text-sm font-medium mb-2"></label>
+                <select asp-for="gForm.Privacy"
+                        class="w-full px-4 py-3 rounded-lg bg-white bg-opacity-10 border border-white border-opacity-20 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="1">Herkes Katılabilir</option>
+                    <option value="2">Yalnızca Davet ile</option>
+                    <option value="3">Gizli Grup</option>
+                </select>
+                <span asp-validation-for="gForm.Privacy" class="text-red-400 text-xs"></span>
+            </div>
+
+            <!-- Üye Seçimi -->
+            <div>
+                <label class="block text-sm font-medium mb-2">Üyeleri Davet Et</label>
+                <div class="flex flex-wrap gap-2 mb-2">
+                    @foreach (var friend in Model.Friends)
+                    {
+                        <div class="flex items-center bg-white bg-opacity-10 px-3 py-1 rounded-full">
+                            <input type="checkbox" name="SelectedMembers" value="@friend.Id" id="friend_@friend.Id"
+                                   class="mr-2 rounded focus:ring-blue-500">
+                            <label for="friend_@friend.Id" class="flex items-center cursor-pointer">
+                                <img src="@friend.AvatarUrl" class="w-6 h-6 rounded-full mr-2">
+                                <span>@friend.Username</span>
+                            </label>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Oluştur Butonu -->
+            <div class="pt-4">
+                <button type="submit"
+                        class="w-full btn-primary py-3 px-4 rounded-lg text-lg font-semibold shadow-lg hover:bg-opacity-90 transition">
+                    Grubu Oluştur
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

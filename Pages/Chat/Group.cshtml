@@ -1,0 +1,119 @@
+﻿@page
+@model ChatForLife.Pages.Chat.GroupModel
+@{
+    ViewData["Title"] = Model.GroupName;
+    Layout = "_Layout";
+}
+
+<div class="flex h-screen bg-gray-900 text-white">
+    <!-- FIX ME: Geçici olarak oluşturduğum bir arayüz bu daha düzenlenecek çok yeri var ama hepsini halledicem dert etmeyin -->
+    <!-- Grup Bilgileri Sidebar -->
+    <div class="w-80 bg-gray-800 p-4 flex flex-col border-r border-gray-700">
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-xl font-bold truncate">@Model.GroupName</h2>
+            <button class="text-gray-400 hover:text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="mb-6">
+            <p class="text-gray-300 text-sm mb-4">@Model.GroupDescription</p>
+            <div class="flex items-center text-sm text-gray-400">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                </svg>
+                <span>@Model.MemberCount üye</span>
+            </div>
+        </div>
+
+        @* Adminse Grubu Düzenle butonunu göster *@
+        @if (Model.IsAdmin)
+        {
+            <div class="mb-4">
+                <a href="" class="w-full bg-yellow-500 hover:bg-yellow-600 text-black py-2 px-4 rounded-lg flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828zM5 13v2h2l7-7-2-2L5 13z" />
+                    </svg>
+                    Grubu Düzenle
+                </a>
+            </div>
+        }
+
+
+
+        <div class="mb-6">
+            <h3 class="font-semibold mb-2 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd" />
+                </svg>
+                Üyeler
+            </h3>
+            <div class="space-y-2">
+                @foreach (var member in Model.Members)
+                {
+                    <div class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <img src="@member.AvatarUrl" class="w-8 h-8 rounded-full mr-2">
+                        <span class="truncate">@member.Username</span>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="mt-auto">
+            <button class="w-full bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clip-rule="evenodd" />
+                </svg>
+                Gruptan Ayrıl
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Sohbet Alanı -->
+    <div class="flex-1 flex flex-col">
+        <!-- Mesajlar -->
+        <div class="flex-1 p-4 overflow-y-auto" id="messagesContainer">
+            @foreach (var message in Model.Messages)
+            {
+                <div class="mb-4">
+                    <div class="flex items-start">
+                        <img src="@message.SenderAvatar" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <div class="flex items-baseline">
+                                <span class="font-bold mr-2">@message.SenderName</span>
+                                <span class="text-xs text-gray-400">@message.Timestamp.ToString("HH:mm")</span>
+                            </div>
+                            <p class="mt-1 text-gray-100">@message.Content</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- Mesaj Gönderme -->
+        <div class="p-4 border-t border-gray-700">
+            <form class="flex items-center">
+                <input type="text" placeholder="Mesaj yaz..."
+                       class="flex-1 bg-gray-700 rounded-l-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-r-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Mesajların en altında başlaması için
+        document.addEventListener('DOMContentLoaded', function () {
+            const container = document.getElementById('messagesContainer');
+            container.scrollTop = container.scrollHeight;
+        });
+    </script>
+}
