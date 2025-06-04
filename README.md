@@ -6,6 +6,16 @@
 ![JWT](https://img.shields.io/badge/Auth-JWT-orange)
 
 ## 🧑‍💻 Takım ve Sorumluluklar
+230201127 - Selim Eren Kaya
+<br>
+220201033 - Gülsüm Nur Maslak
+<br>
+230201118 - Merve Özdemir
+<br>
+220201077 - Mahir Enes Akpınar
+<br>
+210201012 - Eyüp Ensar Toğuşlu
+
 ### **Mimari Katmanlar**
 | Katman             | Katkı Sağlayan | Görevler ve Teknolojiler                          |
 |--------------------|---------------|--------------------------------------------------|
