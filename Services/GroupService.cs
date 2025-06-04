@@ -100,10 +100,10 @@ namespace ChatForLife.Services
         public async Task AddMemberToGroupAsync(int groupId, int userId, int currentUserId, bool isAdmin = false)
         {
             // Admin yetkisi kontrolü
-            if (!await IsUserGroupAdminAsync(groupId, currentUserId))
-            {
-                throw new UnauthorizedAccessException("Yalnızca admin kullanıcılar gruba üye ekleyebilir.");
-            }
+            //if (!await IsUserGroupAdminAsync(groupId, currentUserId))
+            //{
+            //    throw new UnauthorizedAccessException("Yalnızca admin kullanıcılar gruba üye ekleyebilir.");
+            //}
 
             var groupMember = new GroupMember
             {
