@@ -1,56 +1,56 @@
 ﻿@page "{groupId:int}"
-@model ChatForLife.Pages.Chat.EditGroupModel
+@model ChatForLife.Pages.Chat.GroupEditModel
 @{
-    ViewData["Title"] = "Grubu Düzenle";
-    Layout = "_Layout";
+    ViewData["Title"] = "Grup Düzenle";
 }
 
-<div class="flex h-screen bg-gray-900 text-white">
-    <!-- Sidebar: Grup Bilgileri -->
-    <div class="w-80 bg-gray-800 p-4 flex flex-col border-r border-gray-700">
-        <div class="mb-6">
-            <h2 class="text-xl font-bold truncate">Grubu Düzenle</h2>
-            <p class="text-sm text-gray-400">ID: @Model.GroupId</p>
-        </div>
+<h2 class="text-2xl font-bold mb-4">@Model.GroupName Grubunu Düzenle</h2>
 
-        <form method="post" class="space-y-4">
-            <div>
-                <label class="block text-sm text-gray-300 mb-1">Grup Adı</label>
-                <input asp-for="GroupName" class="w-full bg-gray-700 text-white border border-gray-600 rounded-lg p-2" />
-            </div>
+<form method="post">
+    <input type="hidden" asp-for="GroupId" />
 
-            <div>
-                <label class="block text-sm text-gray-300 mb-1">Açıklama</label>
-                <textarea asp-for="GroupDescription" rows="3" class="w-full bg-gray-700 text-white border border-gray-600 rounded-lg p-2"></textarea>
-            </div>
-
-            <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg">
-                Kaydet
-            </button>
-        </form>
-
-        <div class="mt-10">
-            <h3 class="font-semibold mb-2 text-sm text-gray-300">Üyeler</h3>
-            <div class="space-y-2 max-h-64 overflow-y-auto pr-1">
-                @foreach (var user in Model.Members)
-                {
-                    <div class="flex items-center justify-between bg-gray-700 p-2 rounded">
-                        <div class="flex items-center">
-                            <img src="@user.AvatarUrl" class="w-8 h-8 rounded-full mr-2" />
-                            <span class="truncate">@user.Username</span>
-                        </div>
-                        <form method="post" asp-page-handler="RemoveMember">
-                            <input type="hidden" name="userId" value="@user.Id" />
-                            <button type="submit" class="text-red-400 hover:text-red-600 text-sm">Çıkar</button>
-                        </form>
-                    </div>
-                }
-            </div>
-        </div>
+    <div class="mb-4">
+        <label asp-for="GroupName" class="block text-gray-700 text-sm font-bold mb-2">Grup Adı:</label>
+        <input asp-for="GroupName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+        <span asp-validation-for="GroupName" class="text-red-500 text-xs italic"></span>
     </div>
 
-    <!-- Sağ boşluk -->
-    <div class="flex-1 bg-gray-900 flex items-center justify-center text-gray-400">
-        <p class="text-lg">Grup bilgilerini soldan düzenleyebilirsiniz.</p>
+    <div class="mb-4">
+        <label asp-for="GroupDescription" class="block text-gray-700 text-sm font-bold mb-2">Açıklama:</label>
+        <textarea asp-for="GroupDescription" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline rows="4"></textarea>
+        <span asp-validation-for="GroupDescription" class="text-red-500 text-xs italic"></span>
     </div>
-</div>
+
+    <button type="submit" asp-page-handler="UpdateGroup" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+        Grup Bilgilerini Güncelle
+    </button>
+    <a asp-page="/Chat/Group" asp-route-groupId="@Model.GroupId" class="ml-2 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Geri Dön</a>
+</form>
+
+<h3 class="text-xl font-bold mt-8 mb-4">Grup Üyeleri</h3>
+
+@if (Model.Members.Any())
+{
+    <ul class="list-disc pl-5">
+        @foreach (var member in Model.Members)
+        {
+            <li class="flex items-center justify-between py-2 border-b">
+                <div class="flex items-center">
+                    <img src="@member.AvatarUrl" alt="@member.Username Avatar" class="w-8 h-8 rounded-full mr-2">
+                    <span>@member.Username</span>
+                </div>
+                <form method="post" class="inline">
+                    <input type="hidden" asp-for="GroupId" />
+                    <input type="hidden" name="memberUserId" value="@member.UserId" />
+                    <button type="submit" asp-page-handler="RemoveMember" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-sm focus:outline-none focus:shadow-outline">
+                        Çıkar
+                    </button>
+                </form>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>Bu grupta henüz üye yok.</p>
+}

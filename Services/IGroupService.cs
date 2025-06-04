@@ -17,5 +17,8 @@ namespace ChatForLife.Services
         Task<bool> IsUserGroupAdminAsync(int groupId, int userId);
 
         Task<Group> GetGroupWithMembersAsync(int groupId);
+
+        Task UpdateGroupAsync(int groupId, string newName, string newDescription, int currentUserId); // Yeni eklenecek
+    
     }
 }

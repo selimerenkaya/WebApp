@@ -177,5 +177,40 @@ namespace ChatForLife.Services
         {
                 return await _groupRepository.GetGroupWithMembersAsync(groupId);
         }
+
+        public async Task UpdateGroupAsync(int groupId, string newName, string newDescription, int currentUserId)
+        {
+            // Admin yetkisi kontrolü
+            if (!await IsUserGroupAdminAsync(groupId, currentUserId))
+            {
+                throw new UnauthorizedAccessException("Yalnızca admin kullanıcılar grup bilgilerini güncelleyebilir.");
+            }
+
+            var groupToUpdate = await _groupRepository.GetByIdAsync(groupId);
+            if (groupToUpdate == null)
+            {
+                throw new ArgumentException($"Grup bulunamadı. GroupId: {groupId}");
+            }
+
+            groupToUpdate.Name = newName;
+            groupToUpdate.Description = newDescription;
+            // groupToUpdate.Privacy gibi diğer özellikleri de burada güncelleyebilirsiniz.
+
+            await _groupRepository.UpdateAsync(groupToUpdate);
+            await _groupRepository.SaveChangesAsync();
+
+            // Grup güncelleme aktivitesi
+            var activity = new Activity
+            {
+                UserId = currentUserId,
+                Type = "UpdateGroup",
+                Description = $"{groupToUpdate.Name} grubunun bilgilerini güncelledi",
+                Icon = "✏️",
+                Timestamp = DateTime.Now
+            };
+
+            await _activityRepository.AddAsync(activity);
+            await _activityRepository.SaveChangesAsync();
+        }
     }
 }
